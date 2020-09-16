@@ -31,21 +31,6 @@ const download = stageRef => {
     downloadURI(dataURL, "test");
 }
 
-// const placeholder = {
-//     description: '',
-//     fork: false,
-//     forks: 0,
-//     full_name: "",
-//     language: "",
-//     name: "",
-//     open_issues: 0,
-//     watchers: 0,
-//     owner: {
-//         avatar_url: "",
-//         login: ''
-//     }
-// }
-
 const Artboard = ({ palette }) => {
 
     const stageRef = useRef();

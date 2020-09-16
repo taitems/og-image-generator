@@ -6,4 +6,8 @@ export const list = [{
     title: 'Another',
     key: 'another',
     path: './Another.js'
+}, {
+    title: 'People',
+    key: 'people',
+    path: './people.js'
 }]
