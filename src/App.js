@@ -1,25 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Flex } from "@chakra-ui/core";
 import './App.css';
+import { Artboard } from './components/Artboard';
+import { paletteList } from './paletteList';
+import { Sidebar } from './components/Sidebar';
+import { ThemeProvider as ChakraProvider, CSSReset } from "@chakra-ui/core";
+import { ThemeProvider } from './providers/theme';
+import { Toolbar } from './components/Toolbar';
+
+var FontFaceObserver = require('fontfaceobserver');
+
+const palette = paletteList.default;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+
+  var fontA = new FontFaceObserver('Inter', {
+    weight: 400
+  });
+  var fontB = new FontFaceObserver('Inter', {
+    weight: 800
+  });
+
+  Promise.all([fontA.load(), fontB.load()]).then(function () {
+    setFontsLoaded(true);
+  });
+
+  return fontsLoaded && (
+
+    <ChakraProvider>
+      <CSSReset />
+      <ThemeProvider>
+        <Flex height="100vh" direction="column">
+          <Toolbar />
+          <Flex height="100%" bg="gray.50">
+            <Sidebar />
+            <Flex
+              flexGrow={1}
+              flexShrink={0}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Artboard palette={palette} />
+            </Flex>
+          </Flex>
+        </Flex>
+      </ThemeProvider>
+    </ChakraProvider>
   );
 }
 
