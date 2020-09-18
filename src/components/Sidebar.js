@@ -10,30 +10,25 @@ const Sidebar = () => {
 
     const [{ theme, themeOptions }, { setTheme, setRepo, setThemeOptions }] = useTheme();
 
+    // TODO: Kyle, should this be done at the provider level? If so then changing theme is mutating?
+    const themeSettings = require(`../templates/${theme}/settings.js`) || [];
+    const arr = themeSettings.map((value) => {
+        return { [value.key]: value.defaultValue };
+    })
+    const defaultThemeSettings = Object.assign({}, ...arr);
 
-    const themeSettings = require(`../templates/${theme}/settings.js`);
-
-    console.log({ themeSettings })
-
-    // const shapeList = [{
-    //     text: "Circle",
-    //     value: "circle"
-    // }, {
-    //     text: "Square",
-    //     value: "square"
-    // }];
+    // TODO: This causes an infinite loop, use useEffect?
+    // setThemeOptions(defaultThemeSettings);
 
     const onThemeChange = e => {
         setTheme(e.target.value)
+        setThemeOptions(defaultThemeSettings);
     }
     const onThemeOptionChange = (settingKey, settingValue) => {
-        console.log(settingKey);
-        console.log(settingValue);
-        // const newOptions = Object.assign({}, ...themeOptions, {
-        //     shape: e.target.value
-        // });
-        // console.log(newOptions)
-        // setThemeOptions(newOptions)
+        const newOptions = Object.assign(themeOptions, {
+            [settingKey]: settingValue
+        });
+        setThemeOptions(newOptions)
     }
 
     return <Box p={3} w={200} background="white">
@@ -63,10 +58,11 @@ const Sidebar = () => {
         </FormControl>
 
         <Box mt={4}>
+
             <Text as="h2">Theme Values</Text>
 
             {themeSettings.map(setting => {
-                return <FormControl key={setting.key}>
+                return <FormControl key={setting.key} mb={2}>
                     <FormLabel>{setting.title}</FormLabel>
                     {
                         setting.type === 'dropdown' && (
@@ -84,15 +80,8 @@ const Sidebar = () => {
                     }
                 </FormControl>
             })}
+
         </Box>
-
-
-
-
-        {/* <FormControl>
-            <FormLabel>Shape</FormLabel>
-            
-        </FormControl> */}
 
     </Box>
 }

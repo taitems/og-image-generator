@@ -2,10 +2,13 @@ import React from 'react';
 import { Layer, Group, Rect, Text, Image } from "react-konva";
 import { ShapeGrid } from '../helpers/ShapeGrid';
 import useImage from 'use-image';
+import { useTheme } from '../../providers/theme';
 
 const DefaultTheme = ({ width, height, palette, description, fullName, owner, name }) => {
 
     const [image] = useImage('images/github-light.png');
+
+    const [{ themeOptions }] = useTheme();
 
     return <Layer>
 
@@ -17,7 +20,7 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
             fill={palette.background}
         />
 
-        <ShapeGrid color={palette.shape} shape={'square'} />
+        <ShapeGrid color={palette.shape} shape={themeOptions.shape} />
 
         <Group x={200}>
 
