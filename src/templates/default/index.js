@@ -1,25 +1,11 @@
 import React from 'react';
 import { Layer, Group, Rect, Text, Image } from "react-konva";
+import { ShapeGrid } from '../helpers/ShapeGrid';
 import useImage from 'use-image';
 
-const configuration = [{
-    title: 'Shape',
-    key: 'shape',
-    type: 'dropdown',
-    options: [{
-        text: 'Square',
-        value: 'square'
-    }, {
-        text: 'Circle',
-        value: 'circle'
-    }]
-}]
-
-const PeopleTheme = ({ width, height, palette, description, fullName, owner, name }) => {
+const DefaultTheme = ({ width, height, palette, description, fullName, owner, name }) => {
 
     const [image] = useImage('images/github-light.png');
-    // const [peopleImage] = useImage('images/035.png');
-    const [peopleImage] = useImage('images/055.png');
 
     return <Layer>
 
@@ -28,10 +14,10 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
             y={0}
             width={width}
             height={height}
-            fill={'#FFF'}
+            fill={palette.background}
         />
 
-        <Image image={peopleImage} width={320} height={320} x={100} y={100} />
+        <ShapeGrid color={palette.shape} shape={'square'} />
 
         <Group x={200}>
 
@@ -43,7 +29,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
                     fontSize={24}
                     fontStyle={400}
                     x={42}
-                    fill={'#000'}
+                    fill={palette.userText}
                 />
             </Group>
 
@@ -52,7 +38,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
                 fontFamily="Inter"
                 fontSize={72}
                 fontStyle={800}
-                fill={'#000'}
+                fill={palette.mainText}
                 y={210}
                 width={width * 0.8}
                 letterSpacing={-2.5}
@@ -61,5 +47,4 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
     </Layer>
 }
 
-export default PeopleTheme;
-export { configuration };
+export default DefaultTheme;

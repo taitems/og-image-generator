@@ -1,13 +1,13 @@
 export const list = [{
     title: 'Default',
     key: 'default',
-    path: './default.js'
+    path: './default/theme.js'
 }, {
     title: 'Another',
     key: 'another',
-    path: './Another.js'
+    path: './another/theme.js'
 }, {
     title: 'People',
     key: 'people',
-    path: './people.js'
+    path: './people/theme.js'
 }]

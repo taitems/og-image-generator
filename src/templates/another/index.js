@@ -1,20 +1,7 @@
 import React from 'react';
 import { Layer, Group, Rect, Text, Image } from "react-konva";
-import { ShapeGrid } from './helpers/ShapeGrid';
+import { ShapeGrid } from '../helpers/ShapeGrid';
 import useImage from 'use-image';
-
-const configuration = [{
-    title: 'Shape',
-    key: 'shape',
-    type: 'dropdown',
-    options: [{
-        text: 'Square',
-        value: 'square'
-    }, {
-        text: 'Circle',
-        value: 'circle'
-    }]
-}]
 
 const AnotherTheme = ({ width, height, palette, description, fullName, owner, name }) => {
 
@@ -82,4 +69,3 @@ const AnotherTheme = ({ width, height, palette, description, fullName, owner, na
 }
 
 export default AnotherTheme;
-export { configuration };

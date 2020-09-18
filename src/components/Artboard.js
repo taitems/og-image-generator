@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { Box, Button } from "@chakra-ui/core";
 import { Stage } from "react-konva";
+import loadable from '@loadable/component';
 import { useTheme } from '../providers/theme';
-import loadable from '@loadable/component'
 
 
 const template = {
@@ -37,13 +37,13 @@ const Artboard = ({ palette }) => {
 
     const [{ theme, repo }] = useTheme();
 
-    const SelectedTheme = loadable(() => import(`../templates/${theme}.js`));
+    const SelectedTheme = loadable(() => import(`../templates/${theme}`));
 
     return <Box>
         <Box fontSize={13} py={1} color="gray.400">
-            Artboard - {theme} Theme
+            Artboard - {template.width} x {template.height}
         </Box>
-        <Box boxShadow="0 2px 20px rgba(0,0,0,0.2)">
+        <Box boxShadow="0 2px 20px rgba(0,0,0,0.1)">
             <Stage width={template.width} height={template.height} ref={stageRef}>
                 <SelectedTheme
                     width={template.width}

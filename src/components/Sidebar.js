@@ -1,27 +1,34 @@
 import React from 'react';
-import { FormControl, FormLabel, Box, Select } from "@chakra-ui/core";
+// import loadable from '@loadable/component'
+import { FormControl, FormLabel, Box, Select, Text } from "@chakra-ui/core";
 import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
 import { FetchUrl } from './FetchUrl';
-import { getGithubRepo } from './getGithubRepo'
+import { getGithubRepo } from './getGithubRepo';
 
 const Sidebar = () => {
 
     const [{ theme, themeOptions }, { setTheme, setRepo, setThemeOptions }] = useTheme();
 
-    const shapeList = [{
-        text: "Circle",
-        value: "circle"
-    }, {
-        text: "Square",
-        value: "square"
-    }];
+
+    const themeSettings = require(`../templates/${theme}/settings.js`);
+
+    console.log({ themeSettings })
+
+    // const shapeList = [{
+    //     text: "Circle",
+    //     value: "circle"
+    // }, {
+    //     text: "Square",
+    //     value: "square"
+    // }];
 
     const onThemeChange = e => {
         setTheme(e.target.value)
     }
-    const onThemeOptionChange = e => {
-        console.log(e.target.value);
+    const onThemeOptionChange = (settingKey, settingValue) => {
+        console.log(settingKey);
+        console.log(settingValue);
         // const newOptions = Object.assign({}, ...themeOptions, {
         //     shape: e.target.value
         // });
@@ -55,31 +62,37 @@ const Sidebar = () => {
             </Select>
         </FormControl>
 
-        <Box>
-            <label>Theme Values</label>
+        <Box mt={4}>
+            <Text as="h2">Theme Values</Text>
+
+            {themeSettings.map(setting => {
+                return <FormControl key={setting.key}>
+                    <FormLabel>{setting.title}</FormLabel>
+                    {
+                        setting.type === 'dropdown' && (
+                            <Select
+                                size="sm"
+                                onChange={e => onThemeOptionChange(setting.key, e.target.value)}
+                                value={themeOptions.shape}>
+                                {setting.options.map(item => (
+                                    <option key={item.value} value={item.value}>
+                                        {item.text}
+                                    </option>
+                                ))}
+                            </Select>
+                        )
+                    }
+                </FormControl>
+            })}
         </Box>
 
-        <FormControl>
-            <FormLabel>Colour Palette</FormLabel>
-            <Select size="sm">
-                <option value="default">Default</option>
-            </Select>
-        </FormControl>
 
 
-        <FormControl>
+
+        {/* <FormControl>
             <FormLabel>Shape</FormLabel>
-            <Select
-                size="sm"
-                onChange={onThemeOptionChange}
-                value={themeOptions.shape}>
-                {shapeList.map(item => (
-                    <option key={item.value} value={item.value}>
-                        {item.text}
-                    </option>
-                ))}
-            </Select>
-        </FormControl>
+            
+        </FormControl> */}
 
     </Box>
 }
