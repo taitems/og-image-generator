@@ -4,24 +4,26 @@ import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
 import { FetchUrl } from './FetchUrl';
 import { getGithubRepo } from './getGithubRepo';
+import reduceTheme from '../functions/reduceTheme';
 
 const Sidebar = () => {
 
-    const [{ reducedTheme }, { setRepo, setThemeReducer }] = useTheme();
+    const [{ theme }, { setRepo, setTheme }] = useTheme();
 
     const onThemeChange = id => {
         console.log({ id })
         const newThemeSettings = require(`../templates/${id}/settings.js`);
-        setThemeReducer({
+        setTheme({
             id,
-            settings: newThemeSettings
+            settings: newThemeSettings,
+            userSettings: reduceTheme(newThemeSettings)
         })
     }
     const onThemeOptionChange = (settingKey, settingValue) => {
-        const newOptions = Object.assign({}, reducedTheme.userSettings, {
+        const newOptions = Object.assign({}, theme.userSettings, {
             [settingKey]: settingValue
         });
-        setThemeReducer({
+        setTheme({
             userSettings: newOptions
         })
     }
@@ -42,7 +44,7 @@ const Sidebar = () => {
             <Select
                 size="sm"
                 onChange={e => { onThemeChange(e.target.value) }}
-                value={reducedTheme.id}>
+                value={theme.id}>
                 {list.map(item => (
                     <option key={item.id} value={item.id}>
                         {item.title}
@@ -55,7 +57,7 @@ const Sidebar = () => {
 
             <Text as="h2">Theme Values</Text>
 
-            {reducedTheme.settings.map(s => {
+            {theme.settings.map(s => {
                 return <FormControl key={s.id} mb={2}>
                     <FormLabel>{s.title}</FormLabel>
                     {
@@ -63,7 +65,7 @@ const Sidebar = () => {
                             <Select
                                 size="sm"
                                 onChange={e => onThemeOptionChange(s.id, e.target.value)}
-                                value={reducedTheme.userSettings[s.id].value}>
+                                value={theme.userSettings[s.id].value}>
                                 {s.options.map(item => (
                                     <option key={item.value} value={item.value}>
                                         {item.text}
