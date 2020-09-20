@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useReducer } from 'react';
 
 const initialState = {
     theme: 'default',
@@ -17,6 +17,11 @@ const initialState = {
         }
     }
 }
+initialState.settings = require(`../templates/${initialState.theme}/settings.js`);
+initialState.userSettings = initialState.settings.reduce((r, e) => {
+    r[e.id] = e.value;
+    return r;
+}, {})
 
 const ThemeContext = React.createContext();
 
@@ -29,17 +34,26 @@ const ThemeProvider = ({
     const [repo, setRepo] = useState(initialState.repo);
     const [theme, setTheme] = useState(initialState.theme);
     const [themeOptions, setThemeOptions] = useState({});
+    const [reducedTheme, setThemeReducer] = useReducer(
+        (reducedTheme, newReducedTheme) => ({ ...reducedTheme, ...newReducedTheme }),
+        { id: initialState.theme, settings: initialState.settings, userSettings: initialState.userSettings }
+    )
+
+    // TODO: Kyle I tried to make setTheme mutate themeOptions on change
+    // and React did not like that.
 
     return (
         <ThemeContext.Provider
             value={[{
                 repo,
                 theme,
-                themeOptions
+                themeOptions,
+                reducedTheme
             }, {
                 setRepo,
                 setTheme,
-                setThemeOptions
+                setThemeOptions,
+                setThemeReducer
             }]}
         >
             {children}

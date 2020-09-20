@@ -1,8 +1,8 @@
 module.exports = [{
     title: 'Shape',
-    key: 'shape',
+    id: 'shape',
     type: 'dropdown',
-    defaultValue: 'square',
+    value: 'square',
     options: [{
         text: 'Square',
         value: 'square'
@@ -12,9 +12,9 @@ module.exports = [{
     }]
 }, {
     title: 'Shape Position',
-    key: 'shapePosition',
+    id: 'shapePosition',
     type: 'dropdown',
-    defaultValue: 'left',
+    value: 'left',
     options: [{
         text: 'Left',
         value: 'left'

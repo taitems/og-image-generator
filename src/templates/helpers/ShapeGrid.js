@@ -35,7 +35,7 @@ const MakeShapes = ({ color, shape }) => {
     })
 }
 
-const ShapeGrid = ({ color, shape = 'circle' }) => (
+const ShapeGrid = ({ color, shape = 'triangle' }) => (
     <Group x={OFFSETX * 2} y={SIZE}>
         <MakeShapes color={color} shape={shape} />
     </Group>
