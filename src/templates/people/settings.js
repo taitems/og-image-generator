@@ -1,12 +1,1 @@
-export default [{
-    title: 'Shape',
-    key: 'shape',
-    type: 'dropdown',
-    options: [{
-        text: 'Square',
-        value: 'square'
-    }, {
-        text: 'Circle',
-        value: 'circle'
-    }]
-}]
+module.exports = []

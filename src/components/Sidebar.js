@@ -1,44 +1,35 @@
 import React from 'react';
-// import loadable from '@loadable/component'
 import { FormControl, FormLabel, Box, Select, Text } from "@chakra-ui/core";
 import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
 import { FetchUrl } from './FetchUrl';
 import { getGithubRepo } from './getGithubRepo';
+import reduceTheme from '../functions/reduceTheme';
 
 const Sidebar = () => {
 
-    const [{ theme, themeOptions }, { setTheme, setRepo, setThemeOptions }] = useTheme();
+    const [{ theme }, { setRepo, setTheme }] = useTheme();
 
-
-    const themeSettings = require(`../templates/${theme}/settings.js`);
-
-    console.log({ themeSettings })
-
-    // const shapeList = [{
-    //     text: "Circle",
-    //     value: "circle"
-    // }, {
-    //     text: "Square",
-    //     value: "square"
-    // }];
-
-    const onThemeChange = e => {
-        setTheme(e.target.value)
+    const onThemeChange = id => {
+        console.log({ id })
+        const newThemeSettings = require(`../templates/${id}/settings.js`);
+        setTheme({
+            id,
+            settings: newThemeSettings,
+            userSettings: reduceTheme(newThemeSettings)
+        })
     }
     const onThemeOptionChange = (settingKey, settingValue) => {
-        console.log(settingKey);
-        console.log(settingValue);
-        // const newOptions = Object.assign({}, ...themeOptions, {
-        //     shape: e.target.value
-        // });
-        // console.log(newOptions)
-        // setThemeOptions(newOptions)
+        const newOptions = Object.assign({}, theme.userSettings, {
+            [settingKey]: settingValue
+        });
+        setTheme({
+            userSettings: newOptions
+        })
     }
 
     return <Box p={3} w={200} background="white">
         <FetchUrl callback={async item => {
-            // console.log(item);
             const { provider, username, repo } = item;
             if (provider === 'github') {
                 const githubRepo = await getGithubRepo(username, repo);
@@ -52,10 +43,10 @@ const Sidebar = () => {
             <FormLabel>Theme</FormLabel>
             <Select
                 size="sm"
-                onChange={onThemeChange}
-                value={theme}>
+                onChange={e => { onThemeChange(e.target.value) }}
+                value={theme.id}>
                 {list.map(item => (
-                    <option key={item.key} value={item.key}>
+                    <option key={item.id} value={item.id}>
                         {item.title}
                     </option>
                 ))}
@@ -63,18 +54,19 @@ const Sidebar = () => {
         </FormControl>
 
         <Box mt={4}>
+
             <Text as="h2">Theme Values</Text>
 
-            {themeSettings.map(setting => {
-                return <FormControl key={setting.key}>
-                    <FormLabel>{setting.title}</FormLabel>
+            {theme.settings.map(s => {
+                return <FormControl key={s.id} mb={2}>
+                    <FormLabel>{s.title}</FormLabel>
                     {
-                        setting.type === 'dropdown' && (
+                        s.type === 'dropdown' && (
                             <Select
                                 size="sm"
-                                onChange={e => onThemeOptionChange(setting.key, e.target.value)}
-                                value={themeOptions.shape}>
-                                {setting.options.map(item => (
+                                onChange={e => onThemeOptionChange(s.id, e.target.value)}
+                                value={theme.userSettings[s.id].value}>
+                                {s.options.map(item => (
                                     <option key={item.value} value={item.value}>
                                         {item.text}
                                     </option>
@@ -84,15 +76,8 @@ const Sidebar = () => {
                     }
                 </FormControl>
             })}
+
         </Box>
-
-
-
-
-        {/* <FormControl>
-            <FormLabel>Shape</FormLabel>
-            
-        </FormControl> */}
 
     </Box>
 }

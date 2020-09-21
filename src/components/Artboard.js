@@ -37,7 +37,7 @@ const Artboard = ({ palette }) => {
 
     const [{ theme, repo }] = useTheme();
 
-    const SelectedTheme = loadable(() => import(`../templates/${theme}`));
+    const SelectedTheme = loadable(() => import(`../templates/${theme.id}`));
 
     return <Box>
         <Box fontSize={13} py={1} color="gray.400">
@@ -53,6 +53,7 @@ const Artboard = ({ palette }) => {
                     description={repo.description}
                     owner={repo.owner}
                     name={repo.name}
+                    settings={theme.userSettings}
                 />
             </Stage>
         </Box>
