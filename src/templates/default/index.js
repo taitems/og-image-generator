@@ -14,7 +14,7 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
             y={0}
             width={width}
             height={height}
-            fill={palette.background}
+            fill={settings.bgColor}
         />
 
         <ShapeGrid color={palette.shape} shape={settings.shape} />

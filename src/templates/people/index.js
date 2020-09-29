@@ -1,8 +1,9 @@
 import React from 'react';
 import { Layer, Group, Rect, Text, Image } from "react-konva";
 import useImage from 'use-image';
+import { ImageBoundingBox } from '../helpers/ImageBoundingBox';
 
-const PeopleTheme = ({ width, height, palette, description, fullName, owner, name }) => {
+const PeopleTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
 
     const [image] = useImage('images/github-light.png');
     const [peopleImage] = useImage('images/035.png');
@@ -15,10 +16,18 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
             y={0}
             width={width}
             height={height}
-            fill={'#FFF'}
+            fill={settings.bgColor}
         />
 
-        <Image image={peopleImage} width={320} height={320} x={800} y={100} />
+        <Rect
+            x={0}
+            y={height * .85}
+            width={width}
+            height={height * .15}
+            fill={settings.bottomColor}
+        />
+
+        {peopleImage && <ImageBoundingBox image={peopleImage} maxWidth={480} maxHeight={320} x={700} y={150} />}
 
         <Group x={50}>
 
