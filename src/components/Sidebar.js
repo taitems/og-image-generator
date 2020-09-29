@@ -17,7 +17,6 @@ const Sidebar = () => {
     )
 
     const onThemeChange = id => {
-        console.log({ id })
         const newThemeSettings = require(`../templates/${id}/settings.js`);
         setTheme({
             id,
@@ -26,8 +25,6 @@ const Sidebar = () => {
         })
     }
     const onThemeOptionChange = (settingKey, settingValue) => {
-        console.log({ settingKey })
-        console.log({ settingValue })
         const newOptions = Object.assign({}, theme.userSettings, {
             [settingKey]: settingValue
         });
