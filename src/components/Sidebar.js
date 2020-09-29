@@ -1,14 +1,16 @@
-import React from 'react';
-import { FormControl, FormLabel, Box, Select, Text } from "@chakra-ui/core";
+import React, { useState } from 'react';
+import { FormControl, FormLabel, Box, Select, Text, Input } from "@chakra-ui/core";
 import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
 import { FetchUrl } from './FetchUrl';
 import { getGithubRepo } from './getGithubRepo';
 import reduceTheme from '../functions/reduceTheme';
+import { SketchPicker } from 'react-color';
 
 const Sidebar = () => {
 
     const [{ theme }, { setRepo, setTheme }] = useTheme();
+    const [colorPickerOpen, setColorPickerOpen] = useState(false);
 
     const onThemeChange = id => {
         console.log({ id })
@@ -20,6 +22,8 @@ const Sidebar = () => {
         })
     }
     const onThemeOptionChange = (settingKey, settingValue) => {
+        console.log({ settingKey })
+        console.log({ settingValue })
         const newOptions = Object.assign({}, theme.userSettings, {
             [settingKey]: settingValue
         });
@@ -57,7 +61,7 @@ const Sidebar = () => {
 
             <Text as="h2">Theme Values</Text>
 
-            {theme.settings.map(s => {
+            {theme.settings && theme.settings.map(s => {
                 return <FormControl key={s.id} mb={2}>
                     <FormLabel>{s.title}</FormLabel>
                     {
@@ -72,6 +76,20 @@ const Sidebar = () => {
                                     </option>
                                 ))}
                             </Select>
+                        )
+                    }
+                    {
+                        s.type === 'color' && (
+                            <>
+                                <Input value={theme.userSettings[s.id]} onClick={() => { setColorPickerOpen(true) }} readOnly />
+                                {colorPickerOpen && <SketchPicker
+                                    color={theme.userSettings[s.id]}
+                                    onChange={c => {
+                                        onThemeOptionChange(s.id, c.hex);
+                                        // setColorPickerOpen(false);
+                                    }}
+                                />}
+                            </>
                         )
                     }
                 </FormControl>
