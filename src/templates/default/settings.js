@@ -2,7 +2,17 @@ module.exports = [{
     title: 'Background Color',
     id: 'bgColor',
     type: 'color',
-    value: '#FF0000'
+    value: '#FFFFFF'
+}, {
+    title: 'Text Color',
+    id: 'textColor',
+    type: 'color',
+    value: '#000000'
+}, {
+    title: 'User Text Color',
+    id: 'userTextColor',
+    type: 'color',
+    value: '#000000'
 }, {
     title: 'Shape',
     id: 'shape',

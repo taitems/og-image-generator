@@ -2,7 +2,7 @@ import React, { useState, useContext, useReducer } from 'react';
 import reduceTheme from '../functions/reduceTheme';
 
 const initialState = {}
-initialState.theme = 'default';
+initialState.theme = 'people';
 initialState.settings = require(`../templates/${initialState.theme}/settings.js`);
 initialState.userSettings = reduceTheme(initialState.settings);
 initialState.repo = {

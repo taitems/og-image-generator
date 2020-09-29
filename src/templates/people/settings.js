@@ -8,4 +8,9 @@ module.exports = [{
     id: 'bottomColor',
     type: 'color',
     value: 'transparent'
+}, {
+    title: 'Illustration',
+    id: 'illustration',
+    type: 'image',
+    value: '035'
 }]

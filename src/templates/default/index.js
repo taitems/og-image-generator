@@ -29,7 +29,7 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
                     fontSize={24}
                     fontStyle={400}
                     x={42}
-                    fill={palette.userText}
+                    fill={settings.userTextColor}
                 />
             </Group>
 
@@ -38,7 +38,7 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
                 fontFamily="Inter"
                 fontSize={72}
                 fontStyle={800}
-                fill={palette.mainText}
+                fill={settings.textColor}
                 y={210}
                 width={width * 0.8}
                 letterSpacing={-2.5}

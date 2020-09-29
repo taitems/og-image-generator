@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { FormControl, FormLabel, Box, Select, Text, Input } from "@chakra-ui/core";
+import { FormControl, FormLabel, Box, Select, Text, Input, Image } from "@chakra-ui/core";
 import { SketchPicker } from 'react-color';
 import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
@@ -102,6 +102,13 @@ const Sidebar = () => {
                                         />
                                     </Box>
                                 </>}
+                            </>
+                        )
+                    }
+                    {
+                        s.type === 'image' && (
+                            <>
+                                <Image src={`/images/${theme.userSettings[s.id]}.png`} width={100} />
                             </>
                         )
                     }
