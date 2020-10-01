@@ -4,6 +4,11 @@ module.exports = [{
     type: 'color',
     value: '#FFFFFF'
 }, {
+    title: 'GitHub Logo Color',
+    id: 'gitHubColor',
+    type: 'color',
+    value: '#000000'
+}, {
     title: 'Bottom Color',
     id: 'bottomColor',
     type: 'color',

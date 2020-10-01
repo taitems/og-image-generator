@@ -2,17 +2,22 @@ module.exports = [{
     title: 'Background Color',
     id: 'bgColor',
     type: 'color',
-    value: '#FFFFFF'
+    value: '#FF0000'
 }, {
     title: 'Text Color',
     id: 'textColor',
     type: 'color',
-    value: '#000000'
+    value: '#FFFFFF'
 }, {
     title: 'User Text Color',
     id: 'userTextColor',
     type: 'color',
-    value: '#000000'
+    value: '#FFFFFF'
+}, {
+    title: 'GitHub Logo Color',
+    id: 'gitHubColor',
+    type: 'color',
+    value: 'rgba(255,255,255,0.66)'
 }, {
     title: 'Shape',
     id: 'shape',

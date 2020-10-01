@@ -1,13 +1,12 @@
 import React from 'react';
-import { Layer, Group, Rect, Text, Image } from "react-konva";
+import { Layer, Group, Rect, Text } from "react-konva";
 import useImage from 'use-image';
+import { GitHubLogo } from '../helpers/GithubLogo';
 import { ImageBoundingBox } from '../helpers/ImageBoundingBox';
 
 const PeopleTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
 
-    const [image] = useImage('images/github-light.png');
     const [peopleImage] = useImage('images/035.png');
-    // const [peopleImage] = useImage('images/055.png');
 
     return <Layer>
 
@@ -32,7 +31,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
         <Group x={50}>
 
             <Group y={160}>
-                <Image image={image} width={32} height={32} y={-6} />
+                <GitHubLogo fill={settings.gitHubColor} width={32} height={32} y={-6} />
                 <Text
                     text={fullName}
                     fontFamily="Inter"
