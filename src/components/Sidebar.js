@@ -33,7 +33,7 @@ const Sidebar = () => {
         })
     }
 
-    return <Box p={3} w={200} background="white">
+    return <Box p={3} w={250} background="white">
         <FetchUrl callback={async item => {
             const { provider, username, repo } = item;
             if (provider === 'github') {

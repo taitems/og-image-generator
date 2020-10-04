@@ -1,11 +1,9 @@
 import React from 'react';
-import { Layer, Group, Rect, Text, Image } from "react-konva";
-import { ShapeGrid } from '../helpers/ShapeGrid';
-import useImage from 'use-image';
+import { Layer, Group, Rect, Text } from "react-konva";
+import { ShapeGrid, GitHubLogo } from '../helpers';
 
 const AnotherTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
 
-    const [image] = useImage('images/github-light.png');
 
     const BORDER_INDENT = 75;
 
@@ -43,7 +41,9 @@ const AnotherTheme = ({ width, height, palette, description, fullName, owner, na
         <Group x={200}>
 
             <Group y={160}>
-                <Image image={image} width={32} height={32} y={-6} />
+
+                <GitHubLogo fill={settings.gitHubColor} width={32} height={32} y={-6} />
+
                 <Text
                     text={fullName}
                     fontFamily="Inter"

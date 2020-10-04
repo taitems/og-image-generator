@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
-import { ShapeGrid } from '../helpers/ShapeGrid';
-import { GitHubLogo } from '../helpers/GithubLogo';
+import { ShapeGrid, GitHubLogo, CenterGroup } from '../helpers';
 
 const DefaultTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
 
+    const [textHeight, setTextHeight] = useState(null);
+
+    console.log({ textHeight });
 
     return <Layer>
 
@@ -18,17 +20,17 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
 
         <ShapeGrid color={palette.shape} shape={settings.shape} />
 
-        <Group x={200}>
+        <CenterGroup x={200} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>
 
-            <Group y={160}>
+            <Group>
 
                 <GitHubLogo fill={settings.gitHubColor} width={32} height={32} y={-6} />
 
                 <Text
                     text={fullName}
-                    fontFamily="Inter"
+                    fontFamily="Poppins"
                     fontSize={24}
-                    fontStyle={400}
+                    fontStyle={600}
                     x={42}
                     fill={settings.userTextColor}
                 />
@@ -36,15 +38,19 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
 
             <Text
                 text={description}
-                fontFamily="Inter"
+                fontFamily="Poppins"
                 fontSize={72}
-                fontStyle={800}
+                fontStyle={600}
                 fill={settings.textColor}
-                y={210}
+                y={50}
                 width={width * 0.8}
                 letterSpacing={-2.5}
+                ref={node => {
+                    console.log(node)
+                    node && setTextHeight(node.getHeight())
+                }}
             />
-        </Group>
+        </CenterGroup>
     </Layer>
 }
 

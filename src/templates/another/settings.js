@@ -1,4 +1,9 @@
 module.exports = [{
+    title: 'GitHub Logo Color',
+    id: 'gitHubColor',
+    type: 'color',
+    value: 'rgba(0,0,0,0.2)'
+}, {
     title: 'Shape',
     id: 'shape',
     type: 'dropdown',

@@ -3,7 +3,7 @@ import { Group, Rect, Circle } from "react-konva";
 
 const fill = len => { return new Array(len).fill(0) };
 
-const ROWS = 20;
+const ROWS = 24;
 const COLUMNS = 4
 const SIZE = 8;
 const OFFSETX = 24;

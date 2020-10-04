@@ -2,7 +2,7 @@ module.exports = [{
     title: 'Background Color',
     id: 'bgColor',
     type: 'color',
-    value: '#FF0000'
+    value: '#0160FA'
 }, {
     title: 'Text Color',
     id: 'textColor',
@@ -17,7 +17,7 @@ module.exports = [{
     title: 'GitHub Logo Color',
     id: 'gitHubColor',
     type: 'color',
-    value: 'rgba(255,255,255,0.66)'
+    value: 'rgba(255,255,255,0.85)'
 }, {
     title: 'Shape',
     id: 'shape',

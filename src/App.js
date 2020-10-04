@@ -22,9 +22,16 @@ function App() {
   });
   var fontB = new FontFaceObserver('Inter', {
     weight: 800
+  })
+  var fontC = new FontFaceObserver('Poppins', {
+    weight: 600
   });
 
-  Promise.all([fontA.load(), fontB.load()]).then(function () {
+  Promise.all([
+    fontA.load(),
+    fontB.load(),
+    fontC.load()
+  ]).then(function () {
     setFontsLoaded(true);
   });
 

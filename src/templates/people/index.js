@@ -1,8 +1,7 @@
 import React from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
 import useImage from 'use-image';
-import { GitHubLogo } from '../helpers/GithubLogo';
-import { ImageBoundingBox } from '../helpers/ImageBoundingBox';
+import { GitHubLogo, ImageBoundingBox } from '../helpers';
 
 const PeopleTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
 
