@@ -1,11 +1,12 @@
 import React, { useReducer } from 'react';
-import { FormControl, FormLabel, Box, Select, Text, Input, Image } from "@chakra-ui/core";
+import { FormControl, FormLabel, Box, Select, Text, Input } from "@chakra-ui/core";
 import { SketchPicker } from 'react-color';
 import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
 import { FetchUrl } from './FetchUrl';
 import { getGithubRepo } from './getGithubRepo';
 import reduceTheme from '../functions/reduceTheme';
+import { ImagePicker, ColorPicker, Dropdown } from './sidebar/pickers';
 
 const Sidebar = () => {
 
@@ -65,20 +66,11 @@ const Sidebar = () => {
             {theme.settings && theme.settings.map(s => {
                 return <FormControl key={s.id} mb={2}>
                     <FormLabel>{s.title}</FormLabel>
-                    {
-                        s.type === 'dropdown' && (
-                            <Select
-                                zIndex={1}
-                                size="sm"
-                                onChange={e => onThemeOptionChange(s.id, e.target.value)}
-                                value={theme.userSettings[s.id].value}>
-                                {s.options.map(item => (
-                                    <option key={item.value} value={item.value}>
-                                        {item.text}
-                                    </option>
-                                ))}
-                            </Select>
-                        )
+                    {{
+                        dropdown: <Dropdown onChange={e => onThemeOptionChange(s.id, e.target.value)} value={theme.userSettings[s.id].value} options={s.options} />,
+                        color: <ColorPicker />,
+                        image: <ImagePicker onChange={{}} value={`/images/${theme.userSettings[s.id]}.png`} />
+                    }[s.type]
                     }
                     {
                         s.type === 'color' && (
@@ -102,13 +94,6 @@ const Sidebar = () => {
                                         />
                                     </Box>
                                 </>}
-                            </>
-                        )
-                    }
-                    {
-                        s.type === 'image' && (
-                            <>
-                                <Image src={`/images/${theme.userSettings[s.id]}.png`} width={100} />
                             </>
                         )
                     }
