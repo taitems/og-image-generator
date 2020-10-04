@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
-import { FormControl, FormLabel, Box, Select, Text, Input } from "@chakra-ui/core";
-import { SketchPicker } from 'react-color';
+import { FormControl, FormLabel, Box, Select, Text } from "@chakra-ui/core";
 import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
 import { FetchUrl } from './FetchUrl';
@@ -11,7 +10,6 @@ import { ImagePicker, ColorPicker, Dropdown } from './sidebar/pickers';
 const Sidebar = () => {
 
     const [{ theme }, { setRepo, setTheme }] = useTheme();
-    // const [colorPickerOpen, setColorPickerOpen] = useState(false);
     const [colorPickerOpen, setColorPickerOpen] = useReducer(
         (oldState, newState) => ({ ...oldState, ...newState }),
         {}
@@ -68,34 +66,11 @@ const Sidebar = () => {
                     <FormLabel>{s.title}</FormLabel>
                     {{
                         dropdown: <Dropdown onChange={e => onThemeOptionChange(s.id, e.target.value)} value={theme.userSettings[s.id].value} options={s.options} />,
-                        color: <ColorPicker />,
+                        color: <ColorPicker id={s.id} value={theme.userSettings[s.id]} color={theme.userSettings[s.id]} updateOpenState={setColorPickerOpen} isOpen={colorPickerOpen[s.id]} onChange={c => {
+                            onThemeOptionChange(s.id, c.hex);
+                        }} />,
                         image: <ImagePicker onChange={{}} value={`/images/${theme.userSettings[s.id]}.png`} />
                     }[s.type]
-                    }
-                    {
-                        s.type === 'color' && (
-                            <>
-                                <Input
-                                    value={theme.userSettings[s.id]}
-                                    onClick={() => { setColorPickerOpen({ [s.id]: true }) }}
-                                    readOnly
-                                />
-                                {colorPickerOpen[s.id] && <>
-                                    <Box position="fixed" top="0" right="0" bottom="0" left="0" onClick={() => {
-                                        setColorPickerOpen({ [s.id]: false })
-                                    }} />
-                                    <Box position="absolute" zIndex={2}>
-                                        <SketchPicker
-                                            color={theme.userSettings[s.id]}
-                                            onChange={c => {
-                                                onThemeOptionChange(s.id, c.hex);
-                                                // setColorPickerOpen(false);
-                                            }}
-                                        />
-                                    </Box>
-                                </>}
-                            </>
-                        )
                     }
                 </FormControl>
             })}
