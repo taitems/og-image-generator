@@ -69,7 +69,7 @@ const Sidebar = () => {
                         color: <ColorPicker id={s.id} value={theme.userSettings[s.id]} color={theme.userSettings[s.id]} updateOpenState={setColorPickerOpen} isOpen={colorPickerOpen[s.id]} onChange={c => {
                             onThemeOptionChange(s.id, c.hex);
                         }} />,
-                        image: <ImagePicker onChange={{}} value={`/images/${theme.userSettings[s.id]}.png`} />
+                        image: <ImagePicker onChange={val => onThemeOptionChange(s.id, val)} value={theme.userSettings[s.id]} options={s.options} />
                     }[s.type]
                     }
                 </FormControl>

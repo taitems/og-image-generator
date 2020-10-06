@@ -5,7 +5,7 @@ import { GitHubLogo, ImageBoundingBox } from '../helpers';
 
 const PeopleTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
 
-    const [peopleImage] = useImage('images/035.png');
+    const [peopleImage] = useImage(`images/${settings.illustration}`);
 
     return <Layer>
 

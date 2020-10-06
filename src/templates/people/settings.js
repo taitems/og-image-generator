@@ -17,5 +17,6 @@ module.exports = [{
     title: 'Illustration',
     id: 'illustration',
     type: 'image',
-    value: '035'
+    value: '035.png',
+    options: ['035.png', '055.png']
 }]
