@@ -26,11 +26,19 @@ function App() {
   var fontC = new FontFaceObserver('Poppins', {
     weight: 600
   });
+  var fontD = new FontFaceObserver('Libre Baskerville', {
+    weight: 400
+  });
+  var fontE = new FontFaceObserver('Libre Baskerville', {
+    weight: 700
+  });
 
   Promise.all([
     fontA.load(),
     fontB.load(),
-    fontC.load()
+    fontC.load(),
+    fontD.load(),
+    fontE.load(),
   ]).then(function () {
     setFontsLoaded(true);
   });

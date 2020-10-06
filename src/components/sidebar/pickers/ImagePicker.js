@@ -10,6 +10,8 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
+    Flex,
+    Box
 } from '@chakra-ui/core';
 
 const ImagePicker = ({ onChange, value, options }) => {
@@ -18,15 +20,20 @@ const ImagePicker = ({ onChange, value, options }) => {
 
     const Thumbs = ({ options, value }) => {
         const selectedStyle = {
-            border: '3px solid red'
+            opacity: 0.2
+        }
+        const unselectedStyle = {
+            cursor: 'pointer'
         }
         return (
-            <>
+            <Flex flexWrap="wrap">
                 {options.map(p => {
-                    const localStyle = p === value ? selectedStyle : null;
-                    return <Image src={`images/${p}`} maxWidth={100} {...localStyle} key={p} onClick={e => { handleClick(p) }} />
+                    const localStyle = p === value ? selectedStyle : unselectedStyle;
+                    return <Box p={3} key={p}>
+                        <Image src={`images/${p}`} width={120} height={120} objectFit="contain" {...localStyle} onClick={e => { handleClick(p) }} />
+                    </Box>
                 })}
-            </>
+            </Flex>
         )
     };
 
@@ -45,7 +52,7 @@ const ImagePicker = ({ onChange, value, options }) => {
 
             <Button onClick={onOpen}>Open Modal</Button>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} size={640}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Choose Image</ModalHeader>

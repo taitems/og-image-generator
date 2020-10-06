@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
 import useImage from 'use-image';
-import { GitHubLogo, ImageBoundingBox } from '../helpers';
+import { GitHubLogo, ImageBoundingBox, CenterGroup } from '../helpers';
 
 const PeopleTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
 
     const [peopleImage] = useImage(`images/${settings.illustration}`);
+    const [textHeight, setTextHeight] = useState(null);
 
     return <Layer>
 
@@ -25,11 +26,11 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
             fill={settings.bottomColor}
         />
 
-        {peopleImage && <ImageBoundingBox image={peopleImage} maxWidth={480} maxHeight={320} x={700} y={150} />}
+        {peopleImage && <ImageBoundingBox image={peopleImage} maxWidth={480} maxHeight={400} x={700} y={113} />}
 
-        <Group x={50}>
+        <CenterGroup x={100} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>
 
-            <Group y={160}>
+            <Group>
                 <GitHubLogo fill={settings.gitHubColor} width={32} height={32} y={-6} />
                 <Text
                     text={fullName}
@@ -43,15 +44,19 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
 
             <Text
                 text={description}
-                fontFamily="Inter"
-                fontSize={60}
+                fontFamily="Libre Baskerville"
+                fontSize={54}
                 fontStyle={800}
                 fill={'#000'}
-                y={210}
-                width={width * 0.55}
-                letterSpacing={-2.5}
+                y={50}
+                width={width * 0.5}
+                letterSpacing={-1}
+                lineHeight={1.2}
+                ref={node => {
+                    node && setTextHeight(node.getHeight())
+                }}
             />
-        </Group>
+        </CenterGroup>
     </Layer>
 }
 

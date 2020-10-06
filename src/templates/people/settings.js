@@ -18,5 +18,7 @@ module.exports = [{
     id: 'illustration',
     type: 'image',
     value: '035.png',
-    options: ['035.png', '055.png']
+    options: [
+        '014.png', '026.png', '034.png', '035.png', '055.png', '106.png', '124.png', '134.png', '145.png', '174.png', '184.png', '185.png',
+    ]
 }]

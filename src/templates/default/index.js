@@ -6,8 +6,6 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
 
     const [textHeight, setTextHeight] = useState(null);
 
-    console.log({ textHeight });
-
     return <Layer>
 
         <Rect
@@ -46,7 +44,6 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
                 width={width * 0.8}
                 letterSpacing={-2.5}
                 ref={node => {
-                    console.log(node)
                     node && setTextHeight(node.getHeight())
                 }}
             />
