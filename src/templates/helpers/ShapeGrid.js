@@ -3,30 +3,25 @@ import { Group, Rect, Circle } from "react-konva";
 
 const fill = len => { return new Array(len).fill(0) };
 
-const ROWS = 24;
-const COLUMNS = 4
-const SIZE = 8;
-const OFFSETX = 24;
-const OFFSETY = 24;
 
-const MakeShapes = ({ color, shape }) => {
-    return fill(ROWS).map((value, yPos) => {
-        return fill(COLUMNS).map((otherValue, xPos) => {
+const MakeShapes = ({ color, shape, rows, columns, size, offsetX, offsetY }) => {
+    return fill(rows).map((value, yPos) => {
+        return fill(columns).map((otherValue, xPos) => {
             if (shape === 'square') {
                 return <Rect
                     key={yPos.toString() + xPos.toString()}
-                    x={xPos * OFFSETX}
-                    y={yPos * OFFSETY}
-                    width={SIZE}
-                    height={SIZE}
+                    x={xPos * offsetX}
+                    y={yPos * offsetY}
+                    width={size}
+                    height={size}
                     fill={color}
                 />
             } else if (shape === 'circle') {
                 return <Circle
                     key={yPos.toString() + xPos.toString()}
-                    x={xPos * OFFSETX}
-                    y={yPos * OFFSETY}
-                    radius={SIZE / 2}
+                    x={xPos * offsetX}
+                    y={yPos * offsetY}
+                    radius={size / 2}
                     fill={color}
                 />
             }
@@ -35,9 +30,17 @@ const MakeShapes = ({ color, shape }) => {
     })
 }
 
-const ShapeGrid = ({ color, shape = 'triangle' }) => (
-    <Group x={OFFSETX * 2} y={SIZE}>
-        <MakeShapes color={color} shape={shape} />
+const ShapeGrid = ({ color, shape = 'triangle', rows = 24, columns = 4, size = 8, offsetX = 24, offsetY = 24, x, y }) => (
+    <Group x={x} y={y}>
+        <MakeShapes
+            color={color}
+            shape={shape}
+            rows={rows}
+            columns={columns}
+            size={size}
+            offsetX={offsetX}
+            offsetY={offsetY}
+        />
     </Group>
 )
 

@@ -34,7 +34,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
                 <GitHubLogo fill={settings.gitHubColor} width={32} height={32} y={-6} />
                 <Text
                     text={fullName}
-                    fontFamily="Inter"
+                    fontFamily="Poppins"
                     fontSize={24}
                     fontStyle={400}
                     x={42}
@@ -44,13 +44,13 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
 
             <Text
                 text={description}
-                fontFamily="Libre Baskerville"
+                fontFamily="Poppins"
                 fontSize={54}
-                fontStyle={700}
+                fontStyle={600}
                 fill={'#000'}
                 y={50}
                 width={width * 0.5}
-                letterSpacing={-1}
+                letterSpacing={0}
                 lineHeight={1.2}
                 ref={node => {
                     node && setTextHeight(node.getHeight())

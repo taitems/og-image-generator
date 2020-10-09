@@ -16,7 +16,7 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
             fill={settings.bgColor}
         />
 
-        <ShapeGrid color={palette.shape} shape={settings.shape} />
+        <ShapeGrid color={palette.shape} shape={settings.shape} x={50} y={10} />
 
         <CenterGroup x={200} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>
 

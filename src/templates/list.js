@@ -10,4 +10,8 @@ export const list = [{
     title: 'People',
     id: 'people',
     path: './people/theme.js'
+}, {
+    title: 'Centered',
+    id: 'centered',
+    path: './centered/theme.js'
 }]

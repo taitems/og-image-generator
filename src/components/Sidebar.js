@@ -33,67 +33,76 @@ const Sidebar = () => {
         })
     }
 
-    return <Box p={3} w={250} background="white">
-        <FetchUrl callback={async item => {
-            const { provider, username, repo } = item;
-            if (provider === 'github') {
-                const githubRepo = await getGithubRepo(username, repo);
-                console.log({ githubRepo });
-                if (githubRepo.message) {
-                    toast({
-                        title: "An error occurred.",
-                        description: `Github responded: ${githubRepo.message}`,
-                        status: "error",
-                        duration: 9000,
-                        isClosable: true,
-                        position: "top",
-                    })
-                } else {
-                    setRepo(githubRepo);
-                }
-            }
-            return false;
-        }} />
+    return (
+        <Box
+            p={3}
+            w={250}
+            background="white"
+            boxShadow="0 2px 8px rgba(0,0,0,0.1)">
 
-        <Textarea value={repo.description} onChange={e => {
-            setRepo({ description: e.target.value })
-        }}></Textarea>
+            <Text as="h2" fontWeight="800">Repository</Text>
 
-        <FormControl>
-            <FormLabel>Theme</FormLabel>
-            <Select
-                size="sm"
-                onChange={e => { onThemeChange(e.target.value) }}
-                value={theme.id}>
-                {list.map(item => (
-                    <option key={item.id} value={item.id}>
-                        {item.title}
-                    </option>
-                ))}
-            </Select>
-        </FormControl>
-
-        <Box mt={4}>
-
-            <Text as="h2">Theme Values</Text>
-
-            {theme.settings && theme.settings.map(s => {
-                return <FormControl key={s.id} mb={2}>
-                    <FormLabel>{s.title}</FormLabel>
-                    {{
-                        dropdown: <Dropdown onChange={e => onThemeOptionChange(s.id, e.target.value)} value={theme.userSettings[s.id].value} options={s.options} />,
-                        color: <ColorPicker id={s.id} value={theme.userSettings[s.id]} color={theme.userSettings[s.id]} updateOpenState={setColorPickerOpen} isOpen={colorPickerOpen[s.id]} onChange={c => {
-                            onThemeOptionChange(s.id, c.hex);
-                        }} />,
-                        image: <ImagePicker onChange={val => onThemeOptionChange(s.id, val)} value={theme.userSettings[s.id]} options={s.options} />
-                    }[s.type]
+            <FetchUrl callback={async item => {
+                const { provider, username, repo } = item;
+                if (provider === 'github') {
+                    const githubRepo = await getGithubRepo(username, repo);
+                    console.log({ githubRepo });
+                    if (githubRepo.message) {
+                        toast({
+                            title: "An error occurred.",
+                            description: `Github responded: ${githubRepo.message}`,
+                            status: "error",
+                            duration: 9000,
+                            isClosable: true,
+                            position: "top",
+                        })
+                    } else {
+                        setRepo(githubRepo);
                     }
-                </FormControl>
-            })}
+                }
+                return false;
+            }} />
+
+            <Textarea value={repo.description} onChange={e => {
+                setRepo({ description: e.target.value })
+            }}></Textarea>
+
+            <FormControl>
+                <FormLabel>Theme</FormLabel>
+                <Select
+                    size="sm"
+                    onChange={e => { onThemeChange(e.target.value) }}
+                    value={theme.id}>
+                    {list.map(item => (
+                        <option key={item.id} value={item.id}>
+                            {item.title}
+                        </option>
+                    ))}
+                </Select>
+            </FormControl>
+
+            <Box mt={4}>
+
+                <Text as="h2" fontWeight="800">Theme Values</Text>
+
+                {theme.settings && theme.settings.map(s => {
+                    return <FormControl key={s.id} mb={2}>
+                        <FormLabel>{s.title}</FormLabel>
+                        {{
+                            dropdown: <Dropdown onChange={e => onThemeOptionChange(s.id, e.target.value)} value={theme.userSettings[s.id].value} options={s.options} />,
+                            color: <ColorPicker id={s.id} value={theme.userSettings[s.id]} color={theme.userSettings[s.id]} updateOpenState={setColorPickerOpen} isOpen={colorPickerOpen[s.id]} onChange={c => {
+                                onThemeOptionChange(s.id, c.hex);
+                            }} />,
+                            image: <ImagePicker onChange={val => onThemeOptionChange(s.id, val)} value={theme.userSettings[s.id]} options={s.options} />
+                        }[s.type]
+                        }
+                    </FormControl>
+                })}
+
+            </Box>
 
         </Box>
-
-    </Box>
+    )
 }
 
 export { Sidebar }
