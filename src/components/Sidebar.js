@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { FormControl, FormLabel, Box, Select, Text } from "@chakra-ui/core";
+import { FormControl, FormLabel, Box, Select, Text, useToast, Textarea } from "@chakra-ui/core";
 import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
 import { FetchUrl } from './FetchUrl';
@@ -9,7 +9,8 @@ import { ImagePicker, ColorPicker, Dropdown } from './sidebar/pickers';
 
 const Sidebar = () => {
 
-    const [{ theme }, { setRepo, setTheme }] = useTheme();
+    const [{ repo, theme }, { setRepo, setTheme }] = useTheme();
+    const toast = useToast();
     const [colorPickerOpen, setColorPickerOpen] = useReducer(
         (oldState, newState) => ({ ...oldState, ...newState }),
         {}
@@ -38,10 +39,25 @@ const Sidebar = () => {
             if (provider === 'github') {
                 const githubRepo = await getGithubRepo(username, repo);
                 console.log({ githubRepo });
-                setRepo(githubRepo);
+                if (githubRepo.message) {
+                    toast({
+                        title: "An error occurred.",
+                        description: `Github responded: ${githubRepo.message}`,
+                        status: "error",
+                        duration: 9000,
+                        isClosable: true,
+                        position: "top",
+                    })
+                } else {
+                    setRepo(githubRepo);
+                }
             }
             return false;
         }} />
+
+        <Textarea value={repo.description} onChange={e => {
+            setRepo({ description: e.target.value })
+        }}></Textarea>
 
         <FormControl>
             <FormLabel>Theme</FormLabel>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, Flex, Box, Button } from "@chakra-ui/core";
 
 const Toolbar = () => {
+
     return (
         <Flex
             justifyContent="space-between"

@@ -42,7 +42,7 @@ const FetchUrl = ({ callback }) => {
             onChange={e => { setUrl(e.target.value) }}
             value={url}
         />
-        <Button type="submit">Go</Button>
+        <Button type="submit">Fetch Repo</Button>
     </form>
 }
 

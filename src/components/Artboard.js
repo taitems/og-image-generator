@@ -5,49 +5,42 @@ import loadable from '@loadable/component';
 import { useTheme } from '../providers/theme';
 
 
-const template = {
-    width: 1200,
-    height: 627,
-};
-
-
-const downloadURI = (uri, name) => {
-    const link = document.createElement("a");
-    link.download = name;
-    link.href = uri;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-};
-
-
-const download = stageRef => {
-    const dataURL = stageRef.current.toDataURL({
-        x: 0,
-        y: 0,
-        width: template.width,
-        height: template.height
-    })
-    downloadURI(dataURL, "test");
-}
-
 const Artboard = ({ palette }) => {
 
     const stageRef = useRef();
 
-    const [{ theme, repo }] = useTheme();
+    const [{ theme, layout, repo }] = useTheme();
+
+    const downloadURI = (uri, name) => {
+        const link = document.createElement("a");
+        link.download = name;
+        link.href = uri;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const download = stageRef => {
+        const dataURL = stageRef.current.toDataURL({
+            x: 0,
+            y: 0,
+            width: layout.width,
+            height: layout.height
+        })
+        downloadURI(dataURL, "test");
+    }
 
     const SelectedTheme = loadable(() => import(`../templates/${theme.id}`));
 
     return <Box>
         <Box fontSize={13} py={1} color="gray.400">
-            Artboard - {template.width} x {template.height}
+            Artboard - {layout.width} x {layout.height}
         </Box>
         <Box boxShadow="0 2px 20px rgba(0,0,0,0.1)">
-            <Stage width={template.width} height={template.height} ref={stageRef}>
+            <Stage width={layout.width} height={layout.height} ref={stageRef}>
                 <SelectedTheme
-                    width={template.width}
-                    height={template.height}
+                    width={layout.width}
+                    height={layout.height}
                     palette={palette}
                     fullName={repo.full_name}
                     description={repo.description}

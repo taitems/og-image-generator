@@ -29,7 +29,17 @@ const ThemeProvider = ({
     children
 }) => {
 
-    const [repo, setRepo] = useState(initialState.repo);
+    const [stageRef, setStageRef] = useState();
+
+    const [layout, setLayout] = useState({
+        width: 1200,
+        height: 627,
+    });
+
+    const [repo, setRepo] = useReducer(
+        (oldRepo, newRepo) => ({ ...oldRepo, ...newRepo }),
+        { ...initialState.repo }
+    );
     const [theme, setTheme] = useReducer(
         (oldTheme, newTheme) => ({ ...oldTheme, ...newTheme }),
         { id: initialState.theme, settings: initialState.settings, userSettings: initialState.userSettings }
@@ -39,10 +49,14 @@ const ThemeProvider = ({
         <ThemeContext.Provider
             value={[{
                 repo,
-                theme
+                theme,
+                stageRef,
+                layout
             }, {
                 setRepo,
-                setTheme
+                setTheme,
+                setStageRef,
+                setLayout
             }]}
         >
             {children}
