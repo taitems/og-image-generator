@@ -7,6 +7,7 @@ import { Sidebar } from './components/Sidebar';
 import { ThemeProvider as ChakraProvider, CSSReset } from "@chakra-ui/core";
 import { ThemeProvider } from './providers/theme';
 import { Toolbar } from './components/Toolbar';
+import { Properties } from './components/Properties';
 
 var FontFaceObserver = require('fontfaceobserver');
 
@@ -54,12 +55,14 @@ function App() {
             <Sidebar />
             <Flex
               flexGrow={1}
-              flexShrink={0}
+              flexShrink={1}
               justifyContent="center"
               alignItems="center"
+              overflow="hidden"
             >
               <Artboard palette={palette} />
             </Flex>
+            <Properties />
           </Flex>
         </Flex>
       </ThemeProvider>

@@ -1,36 +1,45 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import { FormControl, FormLabel, Box, Select, Text, useToast, Textarea } from "@chakra-ui/core";
 import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
 import { FetchUrl } from './FetchUrl';
 import { getGithubRepo } from './getGithubRepo';
-import reduceTheme from '../functions/reduceTheme';
-import { ImagePicker, ColorPicker, Dropdown } from './sidebar/pickers';
+import { flattenSettings } from '../functions/flattenSettings';
+import { flattenSettingsRaw } from '../functions/flattenSettingsRaw';
+import { Layer } from './Layer';
 
 const Sidebar = () => {
 
-    const [{ repo, theme }, { setRepo, setTheme }] = useTheme();
+    const [{ repo, theme, selectedLayer }, { setRepo, setTheme, setSelectedLayer }] = useTheme();
     const toast = useToast();
-    const [colorPickerOpen, setColorPickerOpen] = useReducer(
-        (oldState, newState) => ({ ...oldState, ...newState }),
-        {}
-    )
 
     const onThemeChange = id => {
         const newThemeSettings = require(`../templates/${id}/settings.js`);
         setTheme({
             id,
             settings: newThemeSettings,
-            userSettings: reduceTheme(newThemeSettings)
+            userSettings: flattenSettings(newThemeSettings),
+            userSettingsRaw: flattenSettingsRaw(newThemeSettings)
         })
     }
-    const onThemeOptionChange = (settingKey, settingValue) => {
-        const newOptions = Object.assign({}, theme.userSettings, {
-            [settingKey]: settingValue
-        });
-        setTheme({
-            userSettings: newOptions
-        })
+
+    const MapLayers = (item, level = 0) => {
+        return <>
+            <Layer
+                label={item.label}
+                level={level}
+                visible={item.visible}
+                type={item.type}
+                selected={item.id && item.id === selectedLayer}
+                onClick={e => {
+                    console.log(item.id)
+                    setSelectedLayer(item.id);
+                }}
+            />
+            {item.children && item.children.map(c => {
+                return MapLayers(c, level + 1)
+            })}
+        </>
     }
 
     return (
@@ -85,20 +94,9 @@ const Sidebar = () => {
 
                 <Text as="h2" fontWeight="800">Theme Values</Text>
 
-                {theme.settings && theme.settings.map(s => {
-                    return <FormControl key={s.id} mb={2}>
-                        <FormLabel>{s.title}</FormLabel>
-                        {{
-                            dropdown: <Dropdown onChange={e => onThemeOptionChange(s.id, e.target.value)} value={theme.userSettings[s.id].value} options={s.options} />,
-                            color: <ColorPicker id={s.id} value={theme.userSettings[s.id]} color={theme.userSettings[s.id]} updateOpenState={setColorPickerOpen} isOpen={colorPickerOpen[s.id]} onChange={c => {
-                                onThemeOptionChange(s.id, c.hex);
-                            }} />,
-                            image: <ImagePicker onChange={val => onThemeOptionChange(s.id, val)} value={theme.userSettings[s.id]} options={s.options} />
-                        }[s.type]
-                        }
-                    </FormControl>
+                {theme.settings && theme.settings.map(layer => {
+                    return MapLayers(layer);
                 })}
-
             </Box>
 
         </Box>

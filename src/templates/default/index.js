@@ -13,7 +13,7 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
             y={0}
             width={width}
             height={height}
-            fill={settings.bgColor}
+            fill={settings.artboard.background}
         />
 
         <ShapeGrid color={palette.shape} shape={settings.shape} x={50} y={10} />
@@ -22,7 +22,7 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
 
             <Group>
 
-                <GitHubLogo fill={settings.gitHubColor} width={32} height={32} y={-6} />
+                <GitHubLogo fill={settings.githubLogo.fill} width={32} height={32} y={-6} />
 
                 <Text
                     text={fullName}
@@ -30,7 +30,7 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
                     fontSize={24}
                     fontStyle={600}
                     x={42}
-                    fill={settings.userTextColor}
+                    fill={settings.repoInfo.color}
                 />
             </Group>
 
@@ -39,12 +39,15 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
                 fontFamily="Poppins"
                 fontSize={72}
                 fontStyle={600}
-                fill={settings.textColor}
+                fill={settings.description.color}
                 y={50}
                 width={width * 0.8}
                 letterSpacing={-2.5}
                 ref={node => {
                     node && setTextHeight(node.getHeight())
+                }}
+                onClick={e => {
+                    console.log('SELCTED')
                 }}
             />
         </CenterGroup>
