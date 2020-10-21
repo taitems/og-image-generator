@@ -92,7 +92,7 @@ const Sidebar = () => {
 
             <Box mt={4}>
 
-                <Text as="h2" fontWeight="800">Theme Values</Text>
+                <Text as="h2" fontWeight="800">Layers</Text>
 
                 {theme.settings && theme.settings.map(layer => {
                     return MapLayers(layer);

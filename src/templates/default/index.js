@@ -13,9 +13,6 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
             <Group
                 onClick={e => onSelect(id)}
                 onMouseEnter={e => {
-                    console.log('over', e);
-                    console.log(e.target.height())
-                    console.log(e.target.x())
                     setDimensions({
                         width: e.target.width(),
                         height: e.target.height(),
@@ -25,11 +22,10 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
                     setIsOver(true)
                 }}
                 onMouseLeave={e => {
-                    console.log('out');
                     setIsOver(false)
                 }}
             >
-                {isOver && dimensions && <Rect x={dimensions.x} y={dimensions.y} width={dimensions.width} height={dimensions.height} fill="red" />}
+                {isOver && dimensions && <Rect x={dimensions.x} y={dimensions.y} width={dimensions.width} height={dimensions.height} stroke="#0092FB" strokeWidth={2} />}
                 {children}
             </Group>
         )

@@ -6,11 +6,15 @@ import { SketchPicker } from 'react-color';
 const ColorPicker = ({ id, value, isOpen, color, onChange, updateOpenState }) => {
     return (
         <>
-            <Input
-                value={value}
-                onClick={() => { updateOpenState({ [id]: true }) }}
-                readOnly
-            />
+            <Box position="relative">
+                <Box position="absolute" background={value} width={'20px'} height={'20px'} borderRadius={2} top="50%" transform="translateY(-50%)" left="8px" />
+                <Input
+                    value={value}
+                    pl={'36px'}
+                    onClick={() => { updateOpenState({ [id]: true }) }}
+                    readOnly
+                />
+            </Box>
             {isOpen && <>
                 <Box position="fixed" top="0" right="0" bottom="0" left="0" onClick={() => {
                     updateOpenState({ [id]: false })
