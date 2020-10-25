@@ -12,7 +12,6 @@ module.exports = [{
         type: 'text',
         id: 'description',
         label: 'Description',
-        value: '#FFF',
         settings: [{
             id: 'color',
             type: 'color',
@@ -49,6 +48,16 @@ module.exports = [{
                 label: 'Color',
                 value: '#FFF'
             }]
+        }]
+    }, {
+        type: 'symbol',
+        id: 'shapeGrid',
+        label: 'Shape Grid',
+        settings: [{
+            type: 'color',
+            id: 'fill',
+            label: 'Fill',
+            value: 'rgba(255,255,255,0.25)'
         }]
     }]
 }]

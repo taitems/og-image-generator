@@ -44,7 +44,10 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
             />
         </Interact>
 
-        <ShapeGrid color={palette.shape} shape={settings.shape} x={50} y={10} />
+        <Interact id="shapeGrid">
+            <ShapeGrid color={settings.shapeGrid.fill} shape={'square'} x={50} y={10} />
+        </Interact>
+
 
         <CenterGroup x={200} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>
 
