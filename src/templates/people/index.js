@@ -5,7 +5,7 @@ import { GitHubLogo, ImageBoundingBox, CenterGroup } from '../helpers';
 
 const PeopleTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
 
-    const [peopleImage] = useImage(`images/${settings.illustration}`);
+    const [peopleImage] = useImage(`images/${settings.illustration.image}`);
     const [textHeight, setTextHeight] = useState(null);
 
     return <Layer>
@@ -15,7 +15,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
             y={0}
             width={width}
             height={height}
-            fill={settings.bgColor}
+            fill={settings.artboard.background}
         />
 
         <Rect
@@ -23,7 +23,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
             y={height * .85}
             width={width}
             height={height * .15}
-            fill={settings.bottomColor}
+            fill={settings.bottomShape.fill}
         />
 
         {peopleImage && <ImageBoundingBox image={peopleImage} maxWidth={480} maxHeight={400} x={700} y={113} />}
@@ -31,7 +31,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
         <CenterGroup x={100} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>
 
             <Group>
-                <GitHubLogo fill={settings.gitHubColor} width={32} height={32} y={-6} />
+                <GitHubLogo fill={settings.githubLogo.fill} width={32} height={32} y={-6} />
                 <Text
                     text={fullName}
                     fontFamily="Poppins"

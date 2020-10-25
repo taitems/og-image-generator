@@ -4,7 +4,6 @@ import { ShapeGrid, GitHubLogo } from '../helpers';
 
 const AnotherTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
 
-
     const BORDER_INDENT = 75;
 
     return <Layer>
@@ -14,10 +13,10 @@ const AnotherTheme = ({ width, height, palette, description, fullName, owner, na
             y={0}
             width={width}
             height={height}
-            fill={'#FFF'}
+            fill={settings.artboard.background}
         />
 
-        <ShapeGrid color={'rgba(0,0,0,0.2)'} shape={settings.shape} />
+        <ShapeGrid color={settings.shapeGrid.fill} shape="square" />
 
         <Rect
             x={BORDER_INDENT}
