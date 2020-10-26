@@ -23,7 +23,7 @@ const Thumbs = ({ options, value, callback }) => {
     }
     return (
         <Flex flexWrap="wrap">
-            {options.map(p => {
+            {options && options.map(p => {
                 const localStyle = p === value ? selectedStyle : unselectedStyle;
                 const thumbUrl = `images/${p.replace('.png', '-thumb.png')}`
                 return <Box p={3} key={p}>

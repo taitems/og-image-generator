@@ -9,7 +9,7 @@ const Artboard = ({ palette }) => {
 
     const stageRef = useRef();
 
-    const [{ theme, layout, repo }, { setSelectedLayer }] = useTheme();
+    const [{ theme, layout, repo, selectedLayer }, { setSelectedLayer }] = useTheme();
 
     const downloadURI = (uri, name) => {
         const link = document.createElement("a");
@@ -52,6 +52,7 @@ const Artboard = ({ palette }) => {
                     name={repo.name}
                     settings={theme.userSettings}
                     onSelect={setSelectedLayer}
+                    selectedLayer={selectedLayer}
                 />
             </Stage>
         </Box>

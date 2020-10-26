@@ -1,40 +1,15 @@
 import React, { useState } from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
 import { ShapeGrid, GitHubLogo, CenterGroup } from '../helpers';
+import { Interactive } from '../helpers/Interactive';
 
-const DefaultTheme = ({ width, height, palette, description, fullName, owner, name, settings, onSelect }) => {
+const DefaultTheme = ({ width, height, palette, description, fullName, owner, name, settings, onSelect, selectedLayer }) => {
 
     const [textHeight, setTextHeight] = useState(null);
 
-    const Interact = ({ id, children }) => {
-        const [isOver, setIsOver] = useState(false);
-        const [dimensions, setDimensions] = useState(null);
-        return (
-            <Group
-                onClick={e => onSelect(id)}
-                onMouseEnter={e => {
-                    setDimensions({
-                        width: e.target.width(),
-                        height: e.target.height(),
-                        x: e.target.x(),
-                        y: e.target.y(),
-                    })
-                    setIsOver(true)
-                }}
-                onMouseLeave={e => {
-                    setIsOver(false)
-                }}
-            >
-                {isOver && dimensions && <Rect x={dimensions.x} y={dimensions.y} width={dimensions.width} height={dimensions.height} stroke="#0092FB" strokeWidth={2} />}
-                {children}
-            </Group>
-        )
-    }
-
-
     return <Layer>
 
-        <Interact id="artboard">
+        <Interactive id="artboard" onSelect={onSelect} selectedLayer={selectedLayer}>
             <Rect
                 x={0}
                 y={0}
@@ -42,22 +17,22 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
                 height={height}
                 fill={settings.artboard.background}
             />
-        </Interact>
+        </Interactive>
 
-        <Interact id="shapeGrid">
+        <Interactive id="shapeGrid" onSelect={onSelect} selectedLayer={selectedLayer}>
             <ShapeGrid color={settings.shapeGrid.fill} shape={'square'} x={50} y={10} />
-        </Interact>
+        </Interactive>
 
 
         <CenterGroup x={200} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>
 
             <Group>
 
-                <Interact id="githubLogo">
+                <Interactive id="githubLogo" onSelect={onSelect} selectedLayer={selectedLayer}>
                     <GitHubLogo fill={settings.githubLogo.fill} width={32} height={32} y={-6} />
-                </Interact>
+                </Interactive>
 
-                <Interact id="repoInfo">
+                <Interactive id="repoInfo" onSelect={onSelect} selectedLayer={selectedLayer}>
                     <Text
                         text={fullName}
                         fontFamily="Poppins"
@@ -66,10 +41,10 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
                         x={42}
                         fill={settings.repoInfo.color}
                     />
-                </Interact>
+                </Interactive>
             </Group>
 
-            <Interact id="description">
+            <Interactive id="description" onSelect={onSelect} selectedLayer={selectedLayer}>
                 <Text
                     text={description}
                     fontFamily="Poppins"
@@ -83,7 +58,7 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
                         node && setTextHeight(node.getHeight())
                     }}
                 />
-            </Interact>
+            </Interactive>
         </CenterGroup>
     </Layer>
 }

@@ -30,8 +30,10 @@ const MakeShapes = ({ color, shape, rows, columns, size, offsetX, offsetY }) => 
     })
 }
 
-const ShapeGrid = ({ color, shape = 'triangle', rows = 24, columns = 4, size = 8, offsetX = 24, offsetY = 24, x, y }) => (
-    <Group x={x} y={y}>
+const ShapeGrid = ({ color, shape = 'triangle', rows = 24, columns = 4, size = 8, offsetX = 24, offsetY = 24, x, y }) => {
+    // const width = columns * size + (columns - 1) * offsetX;
+    // const height = rows * size + (rows - 1) * offsetY;
+    return <Group x={x} y={y} >
         <MakeShapes
             color={color}
             shape={shape}
@@ -42,6 +44,6 @@ const ShapeGrid = ({ color, shape = 'triangle', rows = 24, columns = 4, size = 8
             offsetY={offsetY}
         />
     </Group>
-)
+}
 
 export { ShapeGrid }

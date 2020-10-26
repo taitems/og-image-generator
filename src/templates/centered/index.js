@@ -1,26 +1,29 @@
 import React from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
 import { ShapeGrid, GitHubLogo } from '../helpers';
+import { Interactive } from '../helpers/Interactive';
 
 const CenteredTheme = props => {
 
-    const { width, height, palette, description, fullName, forks, openIssues, watchers, settings } = props;
+    const { width, height, palette, description, fullName, forks, openIssues, watchers, settings, onSelect, selectedLayer } = props;
 
     const LOGO_SIZE = 180;
 
     return <Layer>
 
-        <Rect
-            x={0}
-            y={0}
-            width={width}
-            height={height}
-            fill={settings.bgColor}
-        />
+        <Interactive id="artboard" onSelect={onSelect} selectedLayer={selectedLayer}>
+            <Rect
+                x={0}
+                y={0}
+                width={width}
+                height={height}
+                fill={settings.artboard.background}
+            />
+        </Interactive>
 
         <ShapeGrid
-            color={palette.shape}
-            shape={settings.shape}
+            color={'#FFF'}
+            shape={'circle'}
             rows={20}
             columns={4}
             offsetX={60}
@@ -29,34 +32,40 @@ const CenteredTheme = props => {
             y={-30}
         />
 
-        <Group y={128}>
 
-            <GitHubLogo fill={settings.gitHubColor} width={LOGO_SIZE} height={LOGO_SIZE} x={width / 2 - (LOGO_SIZE / 2)} />
+        <Interactive id="githubLogo" onSelect={onSelect} selectedLayer={selectedLayer}>
+            <GitHubLogo fill={settings.githubLogo.fill} width={LOGO_SIZE} height={LOGO_SIZE} x={width / 2 - (LOGO_SIZE / 2)} y={128} />
+        </Interactive>
 
+        <Interactive id="repoInfo" onSelect={onSelect} selectedLayer={selectedLayer}>
             <Text
                 text={fullName}
                 fontFamily="Poppins"
                 fontSize={48}
                 fontStyle={600}
-                fill={settings.userTextColor}
-                width={width}
+                fill={settings.repoInfo.color}
+                width={width * .8}
                 align="center"
-                y={LOGO_SIZE + 40}
+                x={width * .1}
+                y={128 + LOGO_SIZE + 40}
             />
+        </Interactive>
 
-        </Group>
 
-        <Group y={410}>
-            <Text
-                text={description}
-                fontFamily="Poppins"
-                fontSize={28}
-                fontStyle={400}
-                fill={settings.userTextColor}
-                width={width}
-                align="center"
-            />
-        </Group>
+        <Interactive id="description" onSelect={onSelect} selectedLayer={selectedLayer}>
+            <Group y={410}>
+                <Text
+                    text={description}
+                    fontFamily="Poppins"
+                    fontSize={28}
+                    fontStyle={400}
+                    fill={settings.description.color}
+                    width={width * .8}
+                    x={width * .1}
+                    align="center"
+                />
+            </Group>
+        </Interactive>
 
         <Group y={490}>
             <Text

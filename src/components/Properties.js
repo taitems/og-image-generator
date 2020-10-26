@@ -50,9 +50,9 @@ const Properties = () => {
                             color: <ColorPicker id={propertyId} value={p.value} color={p.value} updateOpenState={setColorPickerOpen} isOpen={colorPickerOpen[propertyId]} onChange={c => {
                                 const { r, g, b, a } = c.rgb;
                                 const color = a < 1 ? `rgba(${r},${g},${b},${a})` : c.hex;
-                                onSettingChange(propertyId, color, propertyId);
+                                onSettingChange(propertyId, color);
                             }} />,
-                            image: <ImagePicker value={p.value} />
+                            image: <ImagePicker value={p.value} options={p.options} onChange={val => onSettingChange(p.id, val)} />
                         }[p.type]}
                     </Box>
                 </Box>
