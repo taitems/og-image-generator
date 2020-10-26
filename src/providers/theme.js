@@ -3,9 +3,9 @@ import { flattenSettings } from '../functions/flattenSettings';
 import { flattenSettingsRaw } from '../functions/flattenSettingsRaw';
 
 const initialState = {}
-// initialState.theme = 'people';
+initialState.theme = 'people';
 // initialState.theme = 'default';
-initialState.theme = 'centered';
+// initialState.theme = 'centered';
 initialState.settings = require(`../templates/${initialState.theme}/settings.js`);
 initialState.userSettings = flattenSettings(initialState.settings);
 initialState.userSettingsRaw = flattenSettingsRaw(initialState.settings);

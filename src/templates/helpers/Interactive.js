@@ -9,10 +9,10 @@ const Interactive = ({ id, children, onSelect, selectedLayer }) => {
     const DrawBox = ({ color }) => {
         return (
             <Rect
-                x={dimensions.x}
-                y={dimensions.y}
-                width={dimensions.width}
-                height={dimensions.height}
+                x={dimensions.x + 1}
+                y={dimensions.y + 1}
+                width={dimensions.width - 2}
+                height={dimensions.height - 2}
                 stroke={color}
                 strokeWidth={2} />
         );
@@ -33,9 +33,9 @@ const Interactive = ({ id, children, onSelect, selectedLayer }) => {
                 setIsOver(false)
             }}
         >
+            {children}
             {isSelected && dimensions && <DrawBox color="#ff0000" />}
             {isOver && dimensions && !isSelected && <DrawBox color="#0092FB" />}
-            {children}
         </Group>
     )
 }

@@ -53,18 +53,17 @@ const CenteredTheme = props => {
 
 
         <Interactive id="description" onSelect={onSelect} selectedLayer={selectedLayer}>
-            <Group y={410}>
-                <Text
-                    text={description}
-                    fontFamily="Poppins"
-                    fontSize={28}
-                    fontStyle={400}
-                    fill={settings.description.color}
-                    width={width * .8}
-                    x={width * .1}
-                    align="center"
-                />
-            </Group>
+            <Text
+                text={description}
+                fontFamily="Poppins"
+                fontSize={28}
+                fontStyle={400}
+                fill={settings.description.color}
+                width={width * .8}
+                x={width * .1}
+                y={410}
+                align="center"
+            />
         </Interactive>
 
         <Group y={490}>
