@@ -24,7 +24,7 @@ initialState.repo = {
     }
 }
 
-const ThemeContext = React.createContext([[], () => { }])
+const ThemeContext = React.createContext([[], []])
 
 const useTheme = () => useContext(ThemeContext);
 
