@@ -4,7 +4,7 @@ import useImage from 'use-image';
 import { GitHubLogo, ImageBoundingBox, CenterGroup } from '../helpers';
 import { Interactive } from '../helpers/Interactive';
 
-const PeopleTheme = ({ width, height, palette, description, fullName, owner, name, settings, onSelect, selectedLayer }) => {
+const PeopleTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
 
     const [peopleImage] = useImage(`images/${settings.illustration.image}`);
     const [textHeight, setTextHeight] = useState(null);
@@ -20,7 +20,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
         />
 
 
-        <Interactive id="bottomShape" onSelect={onSelect} selectedLayer={selectedLayer}>
+        <Interactive id="bottomShape">
             <Rect
                 x={0}
                 y={height * .85}
@@ -30,17 +30,17 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
             />
         </Interactive>
 
-        {peopleImage && <Interactive id="illustration" onSelect={onSelect} selectedLayer={selectedLayer}>
+        {peopleImage && <Interactive id="illustration">
             <ImageBoundingBox image={peopleImage} maxWidth={480} maxHeight={400} x={700} y={113} />
         </Interactive>}
 
         <CenterGroup x={100} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>
 
             <Group>
-                <Interactive id="githubLogo" onSelect={onSelect} selectedLayer={selectedLayer}>
+                <Interactive id="githubLogo">
                     <GitHubLogo fill={settings.githubLogo.fill} width={32} height={32} y={-6} />
                 </Interactive>
-                <Interactive id="repoInfo" onSelect={onSelect} selectedLayer={selectedLayer}>
+                <Interactive id="repoInfo">
                     <Text
                         text={fullName}
                         fontFamily="Poppins"
@@ -52,7 +52,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
                 </Interactive>
             </Group>
 
-            <Interactive id="description" onSelect={onSelect} selectedLayer={selectedLayer}>
+            <Interactive id="description">
                 <Text
                     text={description}
                     fontFamily="Poppins"

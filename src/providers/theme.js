@@ -24,7 +24,7 @@ initialState.repo = {
     }
 }
 
-const ThemeContext = React.createContext();
+const ThemeContext = React.createContext([[], () => { }])
 
 const useTheme = () => useContext(ThemeContext);
 
@@ -48,6 +48,9 @@ const ThemeProvider = ({
         { id: initialState.theme, settings: initialState.settings, userSettings: initialState.userSettings, userSettingsRaw: initialState.userSettingsRaw }
     )
     const [selectedLayer, setSelectedLayer] = useState(null);
+    const [selectedLayerDimensions, setSelectedLayerDimensions] = useState({});
+    const [hoveredLayer, setHoveredLayer] = useState(null);
+    const [hoveredLayerDimensions, setHoveredLayerDimensions] = useState({});
 
     return (
         <ThemeContext.Provider
@@ -56,13 +59,19 @@ const ThemeProvider = ({
                 theme,
                 stageRef,
                 layout,
-                selectedLayer
+                selectedLayer,
+                selectedLayerDimensions,
+                hoveredLayer,
+                hoveredLayerDimensions
             }, {
                 setRepo,
                 setTheme,
                 setStageRef,
                 setLayout,
-                setSelectedLayer
+                setSelectedLayer,
+                setSelectedLayerDimensions,
+                setHoveredLayer,
+                setHoveredLayerDimensions
             }]}
         >
             {children}

@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { Group, Rect } from "react-konva";
+import { useTheme } from '../../providers/theme';
 
-const Interactive = ({ id, children, onSelect, selectedLayer }) => {
+const Interactive = ({ id, children }) => {
+    const [{ repo, theme, selectedLayer }, { setSelectedLayer }] = useTheme();
     const [isOver, setIsOver] = useState(false);
     const [dimensions, setDimensions] = useState(null);
     const isSelected = selectedLayer === id;
+
+    console.log({ repo })
+    console.log({ theme })
+    console.log({ selectedLayer })
+    console.log({ setSelectedLayer })
 
     const DrawBox = ({ color }) => {
         return (
@@ -19,7 +26,7 @@ const Interactive = ({ id, children, onSelect, selectedLayer }) => {
     }
     return (
         <Group
-            onClick={e => onSelect(id)}
+            onClick={e => setSelectedLayer(id)}
             onMouseEnter={e => {
                 setDimensions({
                     x: e.target.x(),
