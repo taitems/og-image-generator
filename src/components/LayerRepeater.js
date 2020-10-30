@@ -8,7 +8,7 @@ const LayerRepeater = () => {
     const [{ theme, selectedLayer }, { setSelectedLayer, setHoveredLayer }] = useTheme();
 
     const mapLayers = (item, level = 0) => (
-        <>
+        <React.Fragment key={item.id}>
             <Layer
                 label={item.label}
                 level={level}
@@ -28,7 +28,7 @@ const LayerRepeater = () => {
             {item.children && item.children.map(c => {
                 return mapLayers(c, level + 1)
             })}
-        </>
+        </React.Fragment>
     )
 
     return theme.settings && theme.settings.map(mapLayers)

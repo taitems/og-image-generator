@@ -1,12 +1,12 @@
 import React, { useReducer } from 'react';
-import { Box } from '@chakra-ui/core';
+import { Box, Button, Flex } from '@chakra-ui/core';
 import { useTheme } from '../providers/theme';
 import { ImagePicker, ColorPicker } from './sidebar/pickers';
 import { merge } from 'lodash';
+import { DownloadButton } from './DownloadButton';
 
 const Properties = () => {
 
-    // const [{ repo, theme, selectedLayer }, { setRepo, setTheme, setSelectedLayer }] = useTheme();
     const [{ theme, selectedLayer }, { setTheme }] = useTheme();
 
     const [colorPickerOpen, setColorPickerOpen] = useReducer(
@@ -62,18 +62,21 @@ const Properties = () => {
     }
 
     return (
-        <Box
+        <Flex
             p={3}
             w={250}
             background="white"
             boxShadow="0 2px 8px rgba(0,0,0,0.1)"
+            flexDirection="column"
         >
-            <Box>Properties pane</Box>
-            {theme.userSettingsRaw && selectedLayer && (
-                <PropertyList properties={values} />
-            )}
-
-        </Box>
+            <Box flexGrow={1}>
+                Properties pane
+                {theme.userSettingsRaw && selectedLayer && (
+                    <PropertyList properties={values} />
+                )}
+            </Box>
+            <DownloadButton />
+        </Flex>
     );
 
 }

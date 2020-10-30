@@ -1,4 +1,4 @@
-import React, { useState, useContext, useReducer } from 'react';
+import React, { useState, useContext, useReducer, useRef } from 'react';
 import { flattenSettings } from '../functions/flattenSettings';
 import { flattenSettingsRaw } from '../functions/flattenSettingsRaw';
 
@@ -32,7 +32,7 @@ const ThemeProvider = ({
     children
 }) => {
 
-    const [stageRef, setStageRef] = useState();
+    const stageRef = useRef();
 
     const [layout, setLayout] = useState({
         width: 1200,
@@ -62,7 +62,6 @@ const ThemeProvider = ({
             }, {
                 setRepo,
                 setTheme,
-                setStageRef,
                 setLayout,
                 setSelectedLayer,
                 setHoveredLayer,
