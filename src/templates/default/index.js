@@ -19,9 +19,11 @@ const DefaultTheme = ({ width, height, palette, description, fullName, owner, na
             />
         </Interactive>
 
-        <Interactive id="shapeGrid" onSelect={onSelect} selectedLayer={selectedLayer}>
-            <ShapeGrid color={settings.shapeGrid.fill} shape={'square'} x={50} y={10} />
-        </Interactive>
+        <Group x={50} y={10}>
+            <Interactive id="shapeGrid" onSelect={onSelect} selectedLayer={selectedLayer}>
+                <ShapeGrid color={settings.shapeGrid.fill} shape={'square'} />
+            </Interactive>
+        </Group>
 
 
         <CenterGroup x={200} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>

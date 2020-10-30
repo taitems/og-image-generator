@@ -18,7 +18,7 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
     return { width: srcWidth * ratio, height: srcHeight * ratio };
 }
 
-const ImageBoundingBox = ({ image, maxWidth, maxHeight, x, y }) => {
+const ImageBoundingBox = ({ image, maxWidth, maxHeight, x = 0, y = 0 }) => {
 
     const imageDimensions = calculateAspectRatioFit(image.width, image.height, maxWidth, maxHeight)
     const { width, height } = imageDimensions;

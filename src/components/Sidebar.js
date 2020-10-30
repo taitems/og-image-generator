@@ -6,11 +6,11 @@ import { FetchUrl } from './FetchUrl';
 import { getGithubRepo } from './getGithubRepo';
 import { flattenSettings } from '../functions/flattenSettings';
 import { flattenSettingsRaw } from '../functions/flattenSettingsRaw';
-import { Layer } from './Layer';
+import { LayerRepeater } from './LayerRepeater';
 
 const Sidebar = () => {
 
-    const [{ repo, theme, selectedLayer }, { setRepo, setTheme, setSelectedLayer }] = useTheme();
+    const [{ repo, theme }, { setRepo, setTheme }] = useTheme();
     const toast = useToast();
 
     const onThemeChange = id => {
@@ -23,24 +23,6 @@ const Sidebar = () => {
         })
     }
 
-    const MapLayers = (item, level = 0) => {
-        return <>
-            <Layer
-                label={item.label}
-                level={level}
-                visible={item.visible}
-                type={item.type}
-                selected={item.id && item.id === selectedLayer}
-                onClick={e => {
-                    console.log(item.id)
-                    setSelectedLayer(item.id);
-                }}
-            />
-            {item.children && item.children.map(c => {
-                return MapLayers(c, level + 1)
-            })}
-        </>
-    }
 
     return (
         <Box
@@ -91,12 +73,8 @@ const Sidebar = () => {
             </FormControl>
 
             <Box mt={4}>
-
                 <Text as="h2" fontWeight="800">Layers</Text>
-
-                {theme.settings && theme.settings.map(layer => {
-                    return MapLayers(layer);
-                })}
+                <LayerRepeater />
             </Box>
 
         </Box>

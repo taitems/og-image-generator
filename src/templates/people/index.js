@@ -20,19 +20,24 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
         />
 
 
-        <Interactive id="bottomShape">
-            <Rect
-                x={0}
-                y={height * .85}
-                width={width}
-                height={height * .15}
-                fill={settings.bottomShape.fill}
-            />
-        </Interactive>
+        <Group
+            x={0}
+            y={height * .85}>
+            <Interactive id="bottomShape">
+                <Rect
+                    width={width}
+                    height={height * .15}
+                    fill={settings.bottomShape.fill}
+                />
+            </Interactive>
+        </Group>
 
-        {peopleImage && <Interactive id="illustration">
-            <ImageBoundingBox image={peopleImage} maxWidth={480} maxHeight={400} x={700} y={113} />
-        </Interactive>}
+        {peopleImage && <Group x={700} y={113}>
+            <Interactive id="illustration">
+                <ImageBoundingBox image={peopleImage} maxWidth={480} maxHeight={400} />
+            </Interactive>
+        </Group>
+        }
 
         <CenterGroup x={100} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>
 
@@ -69,7 +74,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
                 />
             </Interactive>
         </CenterGroup>
-    </Layer>
+    </Layer >
 }
 
 export default PeopleTheme;

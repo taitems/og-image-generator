@@ -48,9 +48,7 @@ const ThemeProvider = ({
         { id: initialState.theme, settings: initialState.settings, userSettings: initialState.userSettings, userSettingsRaw: initialState.userSettingsRaw }
     )
     const [selectedLayer, setSelectedLayer] = useState(null);
-    const [selectedLayerDimensions, setSelectedLayerDimensions] = useState({});
     const [hoveredLayer, setHoveredLayer] = useState(null);
-    const [hoveredLayerDimensions, setHoveredLayerDimensions] = useState({});
 
     return (
         <ThemeContext.Provider
@@ -60,18 +58,14 @@ const ThemeProvider = ({
                 stageRef,
                 layout,
                 selectedLayer,
-                selectedLayerDimensions,
                 hoveredLayer,
-                hoveredLayerDimensions
             }, {
                 setRepo,
                 setTheme,
                 setStageRef,
                 setLayout,
                 setSelectedLayer,
-                setSelectedLayerDimensions,
                 setHoveredLayer,
-                setHoveredLayerDimensions
             }]}
         >
             {children}

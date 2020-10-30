@@ -1,49 +1,55 @@
 import React, { useState } from 'react';
-import { Group, Rect } from "react-konva";
+import { Group } from "react-konva";
 import { useTheme } from '../../providers/theme';
+import { DrawBox } from './DrawBox';
 
 const Interactive = ({ id, children }) => {
-    const [{ repo, theme, selectedLayer }, { setSelectedLayer }] = useTheme();
-    const [isOver, setIsOver] = useState(false);
+
+    const [{ hoveredLayer, selectedLayer }, { setHoveredLayer, setSelectedLayer }] = useTheme();
+
+    const isHovered = hoveredLayer && hoveredLayer === id;
+    const isSelected = selectedLayer && selectedLayer === id;
     const [dimensions, setDimensions] = useState(null);
-    const isSelected = selectedLayer === id;
 
-    console.log({ repo })
-    console.log({ theme })
     console.log({ selectedLayer })
-    console.log({ setSelectedLayer })
 
-    const DrawBox = ({ color }) => {
-        return (
-            <Rect
-                x={dimensions.x + 1}
-                y={dimensions.y + 1}
-                width={dimensions.width - 2}
-                height={dimensions.height - 2}
-                stroke={color}
-                strokeWidth={2} />
-        );
-    }
     return (
-        <Group
-            onClick={e => setSelectedLayer(id)}
-            onMouseEnter={e => {
-                setDimensions({
-                    x: e.target.x(),
-                    y: e.target.y(),
-                    width: e.target.width(),
-                    height: e.target.height(),
-                })
-                setIsOver(true)
-            }}
-            onMouseLeave={e => {
-                setIsOver(false)
-            }}
-        >
-            {children}
-            {isSelected && dimensions && <DrawBox color="#ff0000" />}
-            {isOver && dimensions && !isSelected && <DrawBox color="#0092FB" />}
-        </Group>
+        <>
+            <Group
+                onClick={e => setSelectedLayer(id)}
+                onMouseEnter={e => {
+                    !dimensions && setDimensions({
+                        x: e.target.x(),
+                        y: e.target.y(),
+                        width: e.target.width(),
+                        height: e.target.height(),
+                    })
+                    setHoveredLayer(id);
+                }}
+                onMouseLeave={e => {
+                    setHoveredLayer(null);
+                }}
+                ref={node => {
+                    // if (node && (isHovered || isSelected) && !dimensions) {
+                    //     const { x, y } = node.getAbsolutePosition();
+                    //     // const { width, height } = node.getClientRect();
+                    //     const width = node.width();
+                    //     const height = node.height();
+                    //     setDimensions({ x, y, width, height });
+                    //     // if (hoveredLayer === id) {
+                    //     //     setHoveredLayerDimensions({ x, y, width, height });
+                    //     // }
+                    //     // if (selectedLayer === id) {
+                    //     //     setSelectedLayerDimensions({ x, y, width, height });
+                    //     // }
+                    // }
+                }}
+            >
+                {children}
+            </Group>
+            {isSelected && dimensions && <DrawBox dimensions={dimensions} color="#ff0000" />}
+            {isHovered && dimensions && !isSelected && <DrawBox dimensions={dimensions} color="#0092FB" />}
+        </>
     )
 }
 
