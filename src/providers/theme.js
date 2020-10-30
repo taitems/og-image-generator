@@ -1,12 +1,14 @@
 import React, { useState, useContext, useReducer } from 'react';
-import reduceTheme from '../functions/reduceTheme';
+import { flattenSettings } from '../functions/flattenSettings';
+import { flattenSettingsRaw } from '../functions/flattenSettingsRaw';
 
 const initialState = {}
-// initialState.theme = 'people';
+initialState.theme = 'people';
 // initialState.theme = 'default';
-initialState.theme = 'centered';
+// initialState.theme = 'centered';
 initialState.settings = require(`../templates/${initialState.theme}/settings.js`);
-initialState.userSettings = reduceTheme(initialState.settings);
+initialState.userSettings = flattenSettings(initialState.settings);
+initialState.userSettingsRaw = flattenSettingsRaw(initialState.settings);
 initialState.repo = {
     description: 'The "Aristo" theme for Cappuccino ported to a jQuery UI Theme',
     fork: false,
@@ -22,7 +24,7 @@ initialState.repo = {
     }
 }
 
-const ThemeContext = React.createContext();
+const ThemeContext = React.createContext([[], []])
 
 const useTheme = () => useContext(ThemeContext);
 
@@ -43,8 +45,10 @@ const ThemeProvider = ({
     );
     const [theme, setTheme] = useReducer(
         (oldTheme, newTheme) => ({ ...oldTheme, ...newTheme }),
-        { id: initialState.theme, settings: initialState.settings, userSettings: initialState.userSettings }
+        { id: initialState.theme, settings: initialState.settings, userSettings: initialState.userSettings, userSettingsRaw: initialState.userSettingsRaw }
     )
+    const [selectedLayer, setSelectedLayer] = useState(null);
+    const [hoveredLayer, setHoveredLayer] = useState(null);
 
     return (
         <ThemeContext.Provider
@@ -52,12 +56,16 @@ const ThemeProvider = ({
                 repo,
                 theme,
                 stageRef,
-                layout
+                layout,
+                selectedLayer,
+                hoveredLayer,
             }, {
                 setRepo,
                 setTheme,
                 setStageRef,
-                setLayout
+                setLayout,
+                setSelectedLayer,
+                setHoveredLayer,
             }]}
         >
             {children}
