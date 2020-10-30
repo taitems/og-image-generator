@@ -1,8 +1,16 @@
 import React from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
+import { useTheme } from '../../providers/theme';
 import { ShapeGrid, GitHubLogo } from '../helpers';
 
-const AnotherTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
+const AnotherTheme = () => {
+
+
+    const [{ theme, layout, repo }] = useTheme();
+    const { width, height } = layout;
+    const { full_name, description, owner, forks, open_issues, watchers, name } = repo;
+    const layers = theme.userSettings;
+
 
     const BORDER_INDENT = 75;
 
@@ -13,10 +21,10 @@ const AnotherTheme = ({ width, height, palette, description, fullName, owner, na
             y={0}
             width={width}
             height={height}
-            fill={settings.artboard.background}
+            fill={layers.artboard.background}
         />
 
-        <ShapeGrid color={settings.shapeGrid.fill} shape="square" />
+        <ShapeGrid color={layers.shapeGrid.fill} shape="square" />
 
         <Rect
             x={BORDER_INDENT}
@@ -41,10 +49,10 @@ const AnotherTheme = ({ width, height, palette, description, fullName, owner, na
 
             <Group y={160}>
 
-                <GitHubLogo fill={settings.gitHubColor} width={32} height={32} y={-6} />
+                <GitHubLogo fill={layers.gitHubColor} width={32} height={32} y={-6} />
 
                 <Text
-                    text={fullName}
+                    text={full_name}
                     fontFamily="Inter"
                     fontSize={24}
                     fontStyle={400}

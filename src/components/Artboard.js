@@ -18,19 +18,7 @@ const Artboard = ({ palette }) => {
         <Box boxShadow="0 2px 20px rgba(0,0,0,0.1)">
             <Stage width={layout.width} height={layout.height} ref={stageRef}>
                 <ThemeProvider>
-                    <SelectedTheme
-                        width={layout.width}
-                        height={layout.height}
-                        palette={palette}
-                        fullName={repo.full_name}
-                        description={repo.description}
-                        owner={repo.owner}
-                        forks={repo.forks}
-                        openIssues={repo.open_issues}
-                        watchers={repo.watchers}
-                        name={repo.name}
-                        settings={theme.userSettings}
-                    />
+                    <SelectedTheme />
                 </ThemeProvider>
             </Stage>
         </Box>

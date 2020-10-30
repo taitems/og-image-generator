@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
 import useImage from 'use-image';
+import { useTheme } from '../../providers/theme';
 import { GitHubLogo, ImageBoundingBox, CenterGroup } from '../helpers';
 import { Interactive } from '../helpers/Interactive';
 
-const PeopleTheme = ({ width, height, palette, description, fullName, owner, name, settings }) => {
+const PeopleTheme = () => {
 
-    const [peopleImage] = useImage(`images/${settings.illustration.image}`);
+    const [{ theme, layout, repo }] = useTheme();
+    const { width, height } = layout;
+    const { full_name, description, owner, forks, open_issues, watchers, name } = repo;
+    const layers = theme.userSettings;
+
+    const [peopleImage] = useImage(`images/${layers.illustration.image}`);
     const [textHeight, setTextHeight] = useState(null);
 
     return <Layer>
@@ -16,7 +22,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
             y={0}
             width={width}
             height={height}
-            fill={settings.artboard.background}
+            fill={layers.artboard.background}
         />
 
 
@@ -27,7 +33,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
                 <Rect
                     width={width}
                     height={height * .15}
-                    fill={settings.bottomShape.fill}
+                    fill={layers.bottomShape.fill}
                 />
             </Interactive>
         </Group>
@@ -43,16 +49,16 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
 
             <Group>
                 <Interactive id="githubLogo">
-                    <GitHubLogo fill={settings.githubLogo.fill} width={32} height={32} y={-6} />
+                    <GitHubLogo fill={layers.githubLogo.fill} width={32} height={32} y={-6} />
                 </Interactive>
                 <Interactive id="repoInfo">
                     <Text
-                        text={fullName}
+                        text={full_name}
                         fontFamily="Poppins"
                         fontSize={24}
                         fontStyle={400}
                         x={42}
-                        fill={'#000'}
+                        fill={layers.repoInfo.color}
                     />
                 </Interactive>
             </Group>
@@ -63,7 +69,7 @@ const PeopleTheme = ({ width, height, palette, description, fullName, owner, nam
                     fontFamily="Poppins"
                     fontSize={54}
                     fontStyle={600}
-                    fill={'#000'}
+                    fill={layers.description.color}
                     y={50}
                     width={width * 0.5}
                     letterSpacing={0}
