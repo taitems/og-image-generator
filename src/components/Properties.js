@@ -37,9 +37,9 @@ const Properties = () => {
     const values = theme.userSettingsRaw && selectedLayer && theme.userSettingsRaw[selectedLayer];
 
     const PropertyList = ({ properties }) => {
-        const { visible, ...theRest } = properties;
-        return theRest && Object.keys(theRest).map((propertyId, index) => {
-            const p = theRest[propertyId];
+        const { visible, ...otherProperies } = properties;
+        return otherProperies && Object.keys(otherProperies).map((propertyId, index) => {
+            const p = otherProperies[propertyId];
             return (
                 <Box key={index}>
                     <Box>

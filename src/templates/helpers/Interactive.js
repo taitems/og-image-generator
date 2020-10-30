@@ -11,8 +11,6 @@ const Interactive = ({ id, children }) => {
     const isSelected = selectedLayer && selectedLayer === id;
     const [dimensions, setDimensions] = useState(null);
 
-    console.log({ selectedLayer })
-
     return (
         <>
             <Group

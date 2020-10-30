@@ -10,11 +10,13 @@ import { LayerRepeater } from './LayerRepeater';
 
 const Sidebar = () => {
 
-    const [{ repo, theme }, { setRepo, setTheme }] = useTheme();
+    const [{ repo, theme }, { setRepo, setTheme, setHoveredLayer, setSelectedLayer }] = useTheme();
     const toast = useToast();
 
     const onThemeChange = id => {
         const newThemeSettings = require(`../templates/${id}/settings.js`);
+        setHoveredLayer(null);
+        setSelectedLayer(null);
         setTheme({
             id,
             settings: newThemeSettings,

@@ -12,20 +12,29 @@ const PeopleTheme = () => {
     const { full_name, description } = repo;
     const layers = theme.userSettings;
 
-    const [peopleImage] = useImage(`images/${layers.illustration.image}`);
+    const isCurrentTheme = theme.id === 'people';
+
+    // const [peopleImage] = useImage(`images/${layers.illustration.image}`);
+    const peopleImagePath = isCurrentTheme && `images/${layers.illustration.image}`;
     const [textHeight, setTextHeight] = useState(null);
 
-    theme.id !== 'people' && alert('omg')
+    if (!isCurrentTheme) {
+        return null;
+    }
+
 
     return <Layer>
 
-        <Rect
-            x={0}
-            y={0}
-            width={width}
-            height={height}
-            fill={layers.artboard.background}
-        />
+
+        <Interactive id="artboard">
+            <Rect
+                x={0}
+                y={0}
+                width={width}
+                height={height}
+                fill={layers.artboard.background}
+            />
+        </Interactive>
 
 
         <Group
@@ -40,12 +49,12 @@ const PeopleTheme = () => {
             </Interactive>
         </Group>
 
-        {peopleImage && <Group x={700} y={113}>
+        <Group x={700} y={113}>
             <Interactive id="illustration">
-                <ImageBoundingBox image={peopleImage} maxWidth={480} maxHeight={400} />
+                {peopleImagePath && <ImageBoundingBox imagePath={peopleImagePath} maxWidth={480} maxHeight={400} />}
             </Interactive>
         </Group>
-        }
+
 
         <CenterGroup x={100} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>
 

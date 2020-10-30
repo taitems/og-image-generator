@@ -5,7 +5,7 @@ import { Layer } from './Layer';
 
 const LayerRepeater = () => {
 
-    const [{ theme, selectedLayer }, { setSelectedLayer, setHoveredLayer }] = useTheme();
+    const [{ theme, selectedLayer, hoveredLayer }, { setSelectedLayer, setHoveredLayer }] = useTheme();
 
     const mapLayers = (item, level = 0) => (
         <React.Fragment key={item.id}>
@@ -15,6 +15,7 @@ const LayerRepeater = () => {
                 visible={item.visible}
                 type={item.type}
                 selected={item.id && item.id === selectedLayer}
+                hovered={item.id && item.id === hoveredLayer}
                 onMouseEnter={e => {
                     setHoveredLayer(item.id)
                 }}

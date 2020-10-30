@@ -1,5 +1,6 @@
 import React from 'react';
 import { Group, Image } from "react-konva";
+import useImage from 'use-image';
 
 /**
  * Conserve aspect ratio of the original region. Useful when shrinking/enlarging
@@ -18,7 +19,13 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
     return { width: srcWidth * ratio, height: srcHeight * ratio };
 }
 
-const ImageBoundingBox = ({ image, maxWidth, maxHeight, x = 0, y = 0 }) => {
+const ImageBoundingBox = ({ imagePath, maxWidth, maxHeight, x = 0, y = 0 }) => {
+
+    const [image] = useImage(imagePath);
+
+    if (!image) {
+        return null;
+    }
 
     const imageDimensions = calculateAspectRatioFit(image.width, image.height, maxWidth, maxHeight)
     const { width, height } = imageDimensions;

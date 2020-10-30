@@ -21,6 +21,7 @@ module.exports = [{
     },
     {
         type: 'group',
+        id: 'repoDetails',
         label: 'Repository Details',
         children: [{
             type: 'svg',
