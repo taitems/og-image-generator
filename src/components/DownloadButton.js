@@ -5,7 +5,7 @@ import { useTheme } from '../providers/theme';
 
 const DownloadButton = () => {
 
-    const [{ stageRef, layout }] = useTheme();
+    const [{ stageRef, layout }, { setSelectedLayer, setHoveredLayer }] = useTheme();
 
     const downloadURI = (uri, name) => {
         const link = document.createElement("a");
@@ -16,7 +16,7 @@ const DownloadButton = () => {
         document.body.removeChild(link);
     };
 
-    const download = stageRef => {
+    const snapshot = () => {
         const fragment = new Date().valueOf().toString().slice(-6);
         const dataURL = stageRef.current.toDataURL({
             x: 0,
@@ -25,6 +25,15 @@ const DownloadButton = () => {
             height: layout.height
         })
         downloadURI(dataURL, `og-image-${fragment}`);
+    }
+
+    const download = stageRef => {
+        // Hide all UI boxes
+        setSelectedLayer(null);
+        setHoveredLayer(null);
+        setTimeout(() => {
+            snapshot(stageRef)
+        }, 100);
     }
 
     return (

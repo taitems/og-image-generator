@@ -7,7 +7,17 @@ const ColorPicker = ({ id, value, isOpen, color, onChange, updateOpenState }) =>
     return (
         <>
             <Box position="relative">
-                <Box position="absolute" background={value} width={'20px'} height={'20px'} borderRadius={2} top="50%" transform="translateY(-50%)" left="8px" />
+                <Box
+                    position="absolute"
+                    background={value}
+                    width={'20px'}
+                    height={'20px'}
+                    borderRadius={2}
+                    top="50%"
+                    transform="translateY(-50%)"
+                    left="8px"
+                    boxShadow="0 1px 3px rgba(0,0,0,0.1)"
+                />
                 <Input
                     value={value}
                     pl={'36px'}

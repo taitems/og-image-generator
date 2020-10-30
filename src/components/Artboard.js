@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Icon, Tooltip } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/core";
 import { Stage } from "react-konva";
 import loadable from '@loadable/component';
 import { ThemeProvider, useTheme } from '../providers/theme';

@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { Box, Button, Flex } from '@chakra-ui/core';
+import { Box, Flex } from '@chakra-ui/core';
 import { useTheme } from '../providers/theme';
 import { ImagePicker, ColorPicker } from './sidebar/pickers';
 import { merge } from 'lodash';
