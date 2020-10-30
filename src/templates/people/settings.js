@@ -17,6 +17,15 @@ module.exports = [{
             type: 'color',
             label: 'Color',
             value: '#000'
+        }, {
+            id: 'font',
+            type: 'font',
+            label: 'Font',
+            value: 'Poppins',
+            options: [
+                'Poppins',
+                'Libre Baskerville'
+            ]
         }]
     },
     {

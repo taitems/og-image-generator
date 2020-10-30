@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { Box, Flex } from '@chakra-ui/core';
 import { useTheme } from '../providers/theme';
-import { ImagePicker, ColorPicker } from './sidebar/pickers';
+import { ImagePicker, ColorPicker, FontPicker } from './sidebar/pickers';
 import { merge } from 'lodash';
 import { DownloadButton } from './DownloadButton';
 
@@ -15,6 +15,8 @@ const Properties = () => {
     )
 
     const onSettingChange = (settingKey, settingValue) => {
+
+        console.log({ settingKey, settingValue })
 
         const newFlatSettings = merge(theme.userSettings, {
             [selectedLayer]: {
@@ -52,7 +54,8 @@ const Properties = () => {
                                 const color = a < 1 ? `rgba(${r},${g},${b},${a})` : c.hex;
                                 onSettingChange(propertyId, color);
                             }} />,
-                            image: <ImagePicker value={p.value} options={p.options} onChange={val => onSettingChange(p.id, val)} />
+                            image: <ImagePicker value={p.value} options={p.options} onChange={val => onSettingChange(p.id, val)} />,
+                            font: <FontPicker value={p.value} options={p.options} onChange={e => onSettingChange(p.id, e.target.value)} />,
                         }[p.type]}
                     </Box>
                 </Box>

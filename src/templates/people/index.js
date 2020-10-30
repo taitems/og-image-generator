@@ -77,7 +77,7 @@ const PeopleTheme = () => {
             <Interactive id="description">
                 <Text
                     text={description}
-                    fontFamily="Poppins"
+                    fontFamily={layers.description.font}
                     fontSize={54}
                     fontStyle={600}
                     fill={layers.description.color}
