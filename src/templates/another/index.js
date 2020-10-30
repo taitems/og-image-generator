@@ -5,12 +5,10 @@ import { ShapeGrid, GitHubLogo } from '../helpers';
 
 const AnotherTheme = () => {
 
-
     const [{ theme, layout, repo }] = useTheme();
     const { width, height } = layout;
-    const { full_name, description, owner, forks, open_issues, watchers, name } = repo;
+    const { full_name, description } = repo;
     const layers = theme.userSettings;
-
 
     const BORDER_INDENT = 75;
 

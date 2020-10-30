@@ -1,23 +1,27 @@
 import React from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
+import { useTheme } from '../../providers/theme';
 import { ShapeGrid, GitHubLogo } from '../helpers';
 import { Interactive } from '../helpers/Interactive';
 
 const CenteredTheme = props => {
 
-    const { width, height, palette, description, fullName, forks, openIssues, watchers, settings, onSelect, selectedLayer } = props;
+    const [{ theme, layout, repo }] = useTheme();
+    const { width, height } = layout;
+    const { full_name, description, forks, open_issues, watchers } = repo;
+    const layers = theme.userSettings;
 
     const LOGO_SIZE = 180;
 
     return <Layer>
 
-        <Interactive id="artboard" onSelect={onSelect} selectedLayer={selectedLayer}>
+        <Interactive id="artboard">
             <Rect
                 x={0}
                 y={0}
                 width={width}
                 height={height}
-                fill={settings.artboard.background}
+                fill={layers.artboard.background}
             />
         </Interactive>
 
@@ -33,17 +37,17 @@ const CenteredTheme = props => {
         />
 
 
-        <Interactive id="githubLogo" onSelect={onSelect} selectedLayer={selectedLayer}>
-            <GitHubLogo fill={settings.githubLogo.fill} width={LOGO_SIZE} height={LOGO_SIZE} x={width / 2 - (LOGO_SIZE / 2)} y={128} />
+        <Interactive id="githubLogo">
+            <GitHubLogo fill={layers.githubLogo.fill} width={LOGO_SIZE} height={LOGO_SIZE} x={width / 2 - (LOGO_SIZE / 2)} y={128} />
         </Interactive>
 
-        <Interactive id="repoInfo" onSelect={onSelect} selectedLayer={selectedLayer}>
+        <Interactive id="repoInfo">
             <Text
-                text={fullName}
+                text={full_name}
                 fontFamily="Poppins"
                 fontSize={48}
                 fontStyle={600}
-                fill={settings.repoInfo.color}
+                fill={layers.repoInfo.color}
                 width={width * .8}
                 align="center"
                 x={width * .1}
@@ -52,13 +56,13 @@ const CenteredTheme = props => {
         </Interactive>
 
 
-        <Interactive id="description" onSelect={onSelect} selectedLayer={selectedLayer}>
+        <Interactive id="description">
             <Text
                 text={description}
                 fontFamily="Poppins"
                 fontSize={28}
                 fontStyle={400}
-                fill={settings.description.color}
+                fill={layers.description.color}
                 width={width * .8}
                 x={width * .1}
                 y={410}
@@ -72,17 +76,17 @@ const CenteredTheme = props => {
                 fontFamily="Poppins"
                 fontSize={28}
                 fontStyle={400}
-                fill={settings.userTextColor}
+                fill={layers.userTextColor}
                 width={width}
                 align="left"
                 x={100}
             />
             <Text
-                text={Intl.NumberFormat().format(openIssues)}
+                text={Intl.NumberFormat().format(open_issues)}
                 fontFamily="Poppins"
                 fontSize={28}
                 fontStyle={400}
-                fill={settings.userTextColor}
+                fill={layers.userTextColor}
                 width={width}
                 x={200}
                 align="left"
@@ -92,7 +96,7 @@ const CenteredTheme = props => {
                 fontFamily="Poppins"
                 fontSize={28}
                 fontStyle={400}
-                fill={settings.userTextColor}
+                fill={layers.userTextColor}
                 width={width}
                 x={300}
                 align="left"

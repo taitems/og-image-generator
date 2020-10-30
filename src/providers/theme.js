@@ -2,7 +2,7 @@ import React, { useState, useContext, useReducer, useRef } from 'react';
 import { flattenSettings } from '../functions/flattenSettings';
 import { flattenSettingsRaw } from '../functions/flattenSettingsRaw';
 
-const initialState = {}
+let initialState = {}
 initialState.theme = 'people';
 // initialState.theme = 'default';
 // initialState.theme = 'centered';
@@ -24,7 +24,7 @@ initialState.repo = {
     }
 }
 
-const ThemeContext = React.createContext({})
+const ThemeContext = React.createContext([[], []])
 
 const useTheme = () => useContext(ThemeContext);
 

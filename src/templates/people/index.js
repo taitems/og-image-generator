@@ -9,11 +9,13 @@ const PeopleTheme = () => {
 
     const [{ theme, layout, repo }] = useTheme();
     const { width, height } = layout;
-    const { full_name, description, owner, forks, open_issues, watchers, name } = repo;
+    const { full_name, description } = repo;
     const layers = theme.userSettings;
 
     const [peopleImage] = useImage(`images/${layers.illustration.image}`);
     const [textHeight, setTextHeight] = useState(null);
+
+    theme.id !== 'people' && alert('omg')
 
     return <Layer>
 
@@ -80,7 +82,7 @@ const PeopleTheme = () => {
                 />
             </Interactive>
         </CenterGroup>
-    </Layer >
+    </Layer>
 }
 
 export default PeopleTheme;
