@@ -11,7 +11,7 @@ const Layer = ({ label, id, level, visible = true, hideable = true, type, select
     const selectedColor = visible ? sidebarLayer.hovered : sidebarLayer.disabledSelected;
     const bg = selected ? selectedColor : hovered ? hoveredColor : 'transparent';
     return (
-        <Flex pl={level * 30} fontSize={14} py={1} bg={bg} {...theRest}>
+        <Flex pl={level * 30} fontSize={14} py={1} bg={bg} cursor="default" {...theRest}>
             <Box mr={1}>
                 <Image src={`/svg/${getIcon(type)}`} />
             </Box>
