@@ -1,16 +1,20 @@
-import { theme } from '@chakra-ui/core';
 import React, { useState } from 'react';
 import { Group } from "react-konva";
 import { useTheme } from '../../providers/theme';
+import { uiColors } from '../../util/uiColors';
 import { DrawBox } from './DrawBox';
 
 const Interactive = ({ id, children }) => {
 
-    const [{ hoveredLayer, selectedLayer }, { setHoveredLayer, setSelectedLayer }] = useTheme();
+    const [{ hoveredLayer, selectedLayer, theme }, { setHoveredLayer, setSelectedLayer }] = useTheme();
     const isHovered = hoveredLayer && hoveredLayer === id;
     const isSelected = selectedLayer && selectedLayer === id;
     const [dimensions, setDimensions] = useState(null);
-    const { colors } = theme;
+
+
+    if (theme.userSettings[id].visible === false) {
+        return null;
+    }
 
     return (
         <>
@@ -31,8 +35,8 @@ const Interactive = ({ id, children }) => {
             >
                 {children}
             </Group>
-            {isSelected && dimensions && <DrawBox dimensions={dimensions} color={colors.blue['300']} strokeWidth={3} />}
-            {isHovered && dimensions && !isSelected && <DrawBox dimensions={dimensions} color={colors.blue['200']} strokeWidth={3} />}
+            {isSelected && dimensions && <DrawBox dimensions={dimensions} color={uiColors.artboardLayer.selected} strokeWidth={3} />}
+            {isHovered && dimensions && !isSelected && <DrawBox dimensions={dimensions} color={uiColors.artboardLayer.hovered} strokeWidth={3} />}
         </>
     )
 }

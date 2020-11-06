@@ -2,6 +2,7 @@ module.exports = [{
     id: 'artboard',
     type: 'artboard',
     label: 'Artboard',
+    hideable: false,
     settings: [{
         id: 'background',
         type: 'color',
@@ -23,6 +24,7 @@ module.exports = [{
         type: 'group',
         id: 'repoDetails',
         label: 'Repository Details',
+        hideable: false,
         children: [{
             type: 'svg',
             id: 'githubLogo',
@@ -37,7 +39,6 @@ module.exports = [{
             type: 'image',
             id: 'avatar',
             label: 'Avatar',
-            editable: false,
             visible: false,
         }, {
             type: 'text',

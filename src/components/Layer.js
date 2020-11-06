@@ -1,14 +1,26 @@
 import React from 'react';
-import { Box, Flex } from "@chakra-ui/core";
+import { Box, Flex, Image } from "@chakra-ui/core";
+import { uiColors } from '../util/uiColors';
 
-const Layer = ({ label, level, visible = true, type, selected, hovered, ...theRest }) => {
-    const bg = selected ? 'cyan.50' : hovered ? 'blue.50' : 'transparent';
+const { sidebarLayer } = uiColors;
+
+
+
+const Layer = ({ label, id, level, visible = true, hideable = true, type, selected, hovered, setVisibility, ...theRest }) => {
+    const hoveredColor = visible ? sidebarLayer.hovered : sidebarLayer.disabledHover;
+    const selectedColor = visible ? sidebarLayer.hovered : sidebarLayer.disabledSelected;
+    const bg = selected ? selectedColor : hovered ? hoveredColor : 'transparent';
     return (
         <Flex pl={level * 30} fontSize={14} py={1} bg={bg} {...theRest}>
             <Box mr={1}>
-                <img src={`/svg/${getIcon(type)}`} alt="" />
+                <Image src={`/svg/${getIcon(type)}`} />
             </Box>
-            <Box color={visible ? '#000' : '#AAA'}>{label}</Box>
+            <Box color={visible ? '#000' : '#AAA'} flexGrow="1">
+                {label}
+            </Box>
+            {hideable && !visible && <Image src="/svg/icon-hidden.svg" justifySelf="flex-end" onClick={() => { setVisibility(id, true) }} />}
+            {hideable && (selected || hovered) && visible && <Image src="/svg/icon-visible.svg" justifySelf="flex-end" onClick={() => { setVisibility(id, false) }} />}
+            {!hideable && (selected || hovered) && <Image src="/svg/icon-locked.svg" justifySelf="flex-end" />}
         </Flex>
     );
 }

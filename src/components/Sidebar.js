@@ -1,12 +1,13 @@
 import React from 'react';
-import { FormControl, FormLabel, Box, Select, Text, useToast, Textarea } from "@chakra-ui/core";
+import { Box, Select, useToast, Textarea } from "@chakra-ui/core";
 import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
 import { FetchUrl } from './FetchUrl';
 import { getGithubRepo } from './getGithubRepo';
-import { flattenSettings } from '../functions/flattenSettings';
-import { flattenSettingsRaw } from '../functions/flattenSettingsRaw';
+import { flattenSettings } from '../util/flattenSettings';
+import { flattenSettingsRaw } from '../util/flattenSettingsRaw';
 import { LayerRepeater } from './LayerRepeater';
+import { Fieldset } from './sidebar/Fieldset';
 
 const Sidebar = () => {
 
@@ -33,35 +34,36 @@ const Sidebar = () => {
             background="white"
             boxShadow="0 2px 8px rgba(0,0,0,0.1)">
 
-            <Text as="h2" fontWeight="800">Repository</Text>
-
-            <FetchUrl callback={async item => {
-                const { provider, username, repo } = item;
-                if (provider === 'github') {
-                    const githubRepo = await getGithubRepo(username, repo);
-                    console.log({ githubRepo });
-                    if (githubRepo.message) {
-                        toast({
-                            title: "An error occurred.",
-                            description: `Github responded: ${githubRepo.message}`,
-                            status: "error",
-                            duration: 9000,
-                            isClosable: true,
-                            position: "top",
-                        })
-                    } else {
-                        setRepo(githubRepo);
+            <Fieldset title="Repository">
+                <FetchUrl callback={async item => {
+                    const { provider, username, repo } = item;
+                    if (provider === 'github') {
+                        const githubRepo = await getGithubRepo(username, repo);
+                        console.log({ githubRepo });
+                        if (githubRepo.message) {
+                            toast({
+                                title: "An error occurred.",
+                                description: `Github responded: ${githubRepo.message}`,
+                                status: "error",
+                                duration: 9000,
+                                isClosable: true,
+                                position: "top",
+                            })
+                        } else {
+                            setRepo(githubRepo);
+                        }
                     }
-                }
-                return false;
-            }} />
+                    return false;
+                }} />
 
-            <Textarea value={repo.description} onChange={e => {
-                setRepo({ description: e.target.value })
-            }}></Textarea>
+                <Textarea value={repo.description} onChange={e => {
+                    setRepo({ description: e.target.value })
+                }}></Textarea>
+            </Fieldset>
 
-            <FormControl>
-                <FormLabel>Theme</FormLabel>
+
+
+            <Fieldset title="Theme">
                 <Select
                     size="sm"
                     onChange={e => { onThemeChange(e.target.value) }}
@@ -72,12 +74,11 @@ const Sidebar = () => {
                         </option>
                     ))}
                 </Select>
-            </FormControl>
+            </Fieldset>
 
-            <Box mt={4}>
-                <Text as="h2" fontWeight="800">Layers</Text>
+            <Fieldset title="Layers">
                 <LayerRepeater />
-            </Box>
+            </Fieldset>
 
         </Box>
     )

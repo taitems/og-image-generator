@@ -4,6 +4,7 @@ import { useTheme } from '../providers/theme';
 import { ImagePicker, ColorPicker, FontPicker } from './sidebar/pickers';
 import { merge } from 'lodash';
 import { DownloadButton } from './DownloadButton';
+import { Fieldset } from './sidebar/Fieldset';
 
 const Properties = () => {
 
@@ -38,29 +39,36 @@ const Properties = () => {
 
     const PropertyList = ({ properties }) => {
         const { visible, ...otherProperies } = properties;
-        return otherProperies && Object.keys(otherProperies).map((propertyId, index) => {
-            const p = otherProperies[propertyId];
-            return (
-                <Box key={index}>
-                    <Box>
-                        {p.label}
+        if (!visible) {
+            return <EmptyState text="No visible layer selected" />
+        } else {
+            return otherProperies && Object.keys(otherProperies).map((propertyId, index) => {
+                const p = otherProperies[propertyId];
+                return (
+                    <Box key={index}>
+                        <Box>
+                            {p.label}
+                        </Box>
+                        <Box>
+                            {{
+                                color: <ColorPicker id={propertyId} value={p.value} color={p.value} updateOpenState={setColorPickerOpen} isOpen={colorPickerOpen[propertyId]} onChange={c => {
+                                    const { r, g, b, a } = c.rgb;
+                                    const color = a < 1 ? `rgba(${r},${g},${b},${a})` : c.hex;
+                                    onSettingChange(propertyId, color);
+                                }} />,
+                                image: <ImagePicker value={p.value} options={p.options} onChange={val => onSettingChange(p.id, val)} />,
+                                font: <FontPicker value={p.value} options={p.options} onChange={e => onSettingChange(p.id, e.target.value)} />,
+                            }[p.type]}
+                        </Box>
                     </Box>
-                    <Box>
-                        {{
-                            color: <ColorPicker id={propertyId} value={p.value} color={p.value} updateOpenState={setColorPickerOpen} isOpen={colorPickerOpen[propertyId]} onChange={c => {
-                                const { r, g, b, a } = c.rgb;
-                                const color = a < 1 ? `rgba(${r},${g},${b},${a})` : c.hex;
-                                onSettingChange(propertyId, color);
-                            }} />,
-                            image: <ImagePicker value={p.value} options={p.options} onChange={val => onSettingChange(p.id, val)} />,
-                            font: <FontPicker value={p.value} options={p.options} onChange={e => onSettingChange(p.id, e.target.value)} />,
-                        }[p.type]}
-                    </Box>
-                </Box>
-            )
-        })
-
+                )
+            })
+        }
     }
+
+    const EmptyState = ({ text }) => (
+        <Box textAlign="center" fontSize="14px" color="gray.600" py={2}>{text}</Box>
+    )
 
     return (
         <Flex
@@ -71,12 +79,17 @@ const Properties = () => {
             flexDirection="column"
         >
             <Box flexGrow={1}>
-                Properties pane
-                {theme.userSettingsRaw && selectedLayer && (
-                    <PropertyList properties={values} />
-                )}
+                <Fieldset title="Layer Properties">
+                    {theme.userSettingsRaw && selectedLayer ?
+                        <PropertyList properties={values} />
+                        :
+                        <EmptyState text="No layer selected" />
+                    }
+                </Fieldset>
             </Box>
-            <DownloadButton />
+            <Fieldset title="Save &amp; Export">
+                <DownloadButton />
+            </Fieldset>
         </Flex>
     );
 

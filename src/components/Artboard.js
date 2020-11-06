@@ -6,6 +6,8 @@ import PeopleTheme from '../templates/people';
 import DefaultTheme from '../templates/default';
 import AnotherTheme from '../templates/another';
 import CenteredTheme from '../templates/centered';
+import { uiColors } from '../util/uiColors';
+const { artboardText } = uiColors;
 
 // const SelectedTheme = loadable(props => import(`../templates/${props.id}`));
 const SelectedTheme = ({ id }) => {
@@ -19,15 +21,17 @@ const SelectedTheme = ({ id }) => {
 
 const Artboard = () => {
 
+
     const [{ stageRef, theme, layout, hoveredLayer, selectedLayer }, { setSelectedLayer, setHoveredLayer }] = useTheme();
     const isHovered = hoveredLayer === 'artboard';
     const isSelected = selectedLayer === 'artboard';
+    const textColor = isSelected ? artboardText.selected : isHovered ? artboardText.hovered : artboardText.default;
 
     return <Box>
         <Box
             fontSize={13}
             py={1}
-            color={isHovered || isSelected ? 'blue.400' : 'gray.400'}
+            color={textColor}
             onClick={() => { setSelectedLayer('artboard') }}
             onMouseEnter={() => { setHoveredLayer('artboard') }}
             onMouseLeave={() => { setHoveredLayer(null) }}

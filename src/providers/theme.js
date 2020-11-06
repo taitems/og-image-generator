@@ -1,6 +1,6 @@
 import React, { useState, useContext, useReducer, useRef } from 'react';
-import { flattenSettings } from '../functions/flattenSettings';
-import { flattenSettingsRaw } from '../functions/flattenSettingsRaw';
+import { flattenSettings } from '../util/flattenSettings';
+import { flattenSettingsRaw } from '../util/flattenSettingsRaw';
 
 let initialState = {}
 initialState.theme = 'people';
