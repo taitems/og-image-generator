@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Button } from "@chakra-ui/core";
+import { Input, Button, Flex } from "@chakra-ui/core";
 
 // https://api.github.com/users/taitems/repos
 // https://api.github.com/repos/taitems/Appfail-JavaScript
@@ -36,13 +36,14 @@ const FetchUrl = ({ callback }) => {
     };
 
     return <form onSubmit={onSubmit}>
-        <Input
-            type="text"
-            size="sm"
-            onChange={e => { setUrl(e.target.value) }}
-            value={url}
-        />
-        <Button type="submit">Fetch Repo</Button>
+        <Flex>
+            <Input
+                type="text"
+                onChange={e => { setUrl(e.target.value) }}
+                value={url}
+            />
+            <Button type="submit" variantColor="blue">Fetch</Button>
+        </Flex>
     </form>
 }
 
