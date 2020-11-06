@@ -1,4 +1,4 @@
-module.exports = [{
+const layers = [{
     id: 'artboard',
     type: 'artboard',
     label: 'Artboard',
@@ -86,4 +86,10 @@ module.exports = [{
             value: '#f0d400'
         }]
     }]
-}]
+}];
+const palette = ['#030047', '#FF3E6C', '#FFC2D6', '#FFCC3E', '#5F5FFF'];
+
+module.exports = {
+    layers,
+    palette
+}

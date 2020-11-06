@@ -15,14 +15,16 @@ const Sidebar = () => {
     const toast = useToast();
 
     const onThemeChange = id => {
-        const newThemeSettings = require(`../templates/${id}/settings.js`);
+        const options = require(`../templates/${id}/settings.js`);
+        const { layers, palette } = options;
         setHoveredLayer(null);
         setSelectedLayer(null);
         setTheme({
             id,
-            settings: newThemeSettings,
-            userSettings: flattenSettings(newThemeSettings),
-            userSettingsRaw: flattenSettingsRaw(newThemeSettings)
+            palette,
+            settings: layers,
+            userSettings: flattenSettings(layers),
+            userSettingsRaw: flattenSettingsRaw(layers)
         })
     }
 

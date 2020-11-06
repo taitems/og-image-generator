@@ -3,7 +3,7 @@ import { Input, Box } from '@chakra-ui/core';
 import { SketchPicker } from 'react-color';
 
 
-const ColorPicker = ({ id, value, isOpen, color, onChange, updateOpenState }) => {
+const ColorPicker = ({ id, value, isOpen, color, onChange, palette, updateOpenState }) => {
     return (
         <>
             <Box position="relative">
@@ -33,6 +33,7 @@ const ColorPicker = ({ id, value, isOpen, color, onChange, updateOpenState }) =>
                     <SketchPicker
                         color={color}
                         onChange={onChange}
+                        presetColors={palette}
                     />
                 </Box>
             </>}

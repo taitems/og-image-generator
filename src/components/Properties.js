@@ -41,6 +41,8 @@ const Properties = () => {
         const { visible, ...otherProperies } = properties;
         if (!visible) {
             return <EmptyState text="No visible layer selected" />
+        } else if (!otherProperies || Object.keys(otherProperies).length === 0) {
+            return <EmptyState text="No editable properties" />
         } else {
             return otherProperies && Object.keys(otherProperies).map((propertyId, index) => {
                 const p = otherProperies[propertyId];
@@ -51,7 +53,7 @@ const Properties = () => {
                         </Box>
                         <Box>
                             {{
-                                color: <ColorPicker id={propertyId} value={p.value} color={p.value} updateOpenState={setColorPickerOpen} isOpen={colorPickerOpen[propertyId]} onChange={c => {
+                                color: <ColorPicker id={propertyId} value={p.value} color={p.value} updateOpenState={setColorPickerOpen} isOpen={colorPickerOpen[propertyId]} palette={theme.palette} onChange={c => {
                                     const { r, g, b, a } = c.rgb;
                                     const color = a < 1 ? `rgba(${r},${g},${b},${a})` : c.hex;
                                     onSettingChange(propertyId, color);

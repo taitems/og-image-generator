@@ -6,7 +6,9 @@ let initialState = {}
 initialState.theme = 'people';
 // initialState.theme = 'default';
 // initialState.theme = 'centered';
-initialState.settings = require(`../templates/${initialState.theme}/settings.js`);
+const options = require(`../templates/${initialState.theme}/settings.js`);
+initialState.settings = options.layers;
+initialState.palette = options.palette;
 initialState.userSettings = flattenSettings(initialState.settings);
 initialState.userSettingsRaw = flattenSettingsRaw(initialState.settings);
 initialState.repo = {
@@ -45,7 +47,7 @@ const ThemeProvider = ({
     );
     const [theme, setTheme] = useReducer(
         (oldTheme, newTheme) => ({ ...oldTheme, ...newTheme }),
-        { id: initialState.theme, settings: initialState.settings, userSettings: initialState.userSettings, userSettingsRaw: initialState.userSettingsRaw }
+        { id: initialState.theme, palette: initialState.palette, settings: initialState.settings, userSettings: initialState.userSettings, userSettingsRaw: initialState.userSettingsRaw }
     )
     const [selectedLayer, setSelectedLayer] = useState(null);
     const [hoveredLayer, setHoveredLayer] = useState(null);

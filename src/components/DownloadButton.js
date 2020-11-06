@@ -41,7 +41,9 @@ const DownloadButton = () => {
             <Button
                 alignSelf="flex-end"
                 width="100%"
-                variantColor="teal"
+                bg="gray.900"
+                _hover={{ bg: "gray.700" }}
+                color="white"
                 onClick={() => { download(stageRef) }}
             >
                 Download
