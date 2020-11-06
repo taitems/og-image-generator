@@ -8,7 +8,7 @@ const { sidebarLayer } = uiColors;
 
 const Layer = ({ label, id, level, visible = true, hideable = true, type, selected, hovered, setVisibility, ...theRest }) => {
     const hoveredColor = visible ? sidebarLayer.hovered : sidebarLayer.disabledHover;
-    const selectedColor = visible ? sidebarLayer.hovered : sidebarLayer.disabledSelected;
+    const selectedColor = visible ? sidebarLayer.selected : sidebarLayer.disabledSelected;
     const bg = selected ? selectedColor : hovered ? hoveredColor : 'transparent';
     return (
         <Flex pl={level * 30} fontSize={14} py={1} bg={bg} cursor="default" {...theRest}>

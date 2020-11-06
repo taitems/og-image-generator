@@ -17,7 +17,7 @@ const layers = [{
             id: 'color',
             type: 'color',
             label: 'Color',
-            value: '#000'
+            value: '#030047'
         }, {
             id: 'font',
             type: 'font',
@@ -42,7 +42,7 @@ const layers = [{
                 type: 'color',
                 id: 'fill',
                 label: 'Fill',
-                value: 'rgba(0,0,0,0.2)'
+                value: 'rgba(3,0,71,0.25)'
             }]
         }, {
             type: 'image',
@@ -58,7 +58,7 @@ const layers = [{
                 id: 'color',
                 type: 'color',
                 label: 'Color',
-                value: '#000'
+                value: '#030047'
             }]
         }]
     }, {
@@ -87,7 +87,24 @@ const layers = [{
         }]
     }]
 }];
-const palette = ['#030047', '#FF3E6C', '#FFC2D6', '#FFCC3E', '#5F5FFF'];
+const palette = [
+    '#02002E',
+    '#030047',
+    '#5D5C89',
+    '#FF3E6C',
+    '#FFA0B7',
+    '#FFC2D6',
+    '#FFF4F7',
+    '#FFCC3E',
+    '#FFE6A0',
+    '#FFF2CF',
+    '#FFFAEE',
+    '#5F5FFF',
+    '#B1B1FF',
+    '#D7D7FF',
+    '#F1F1FF',
+    '#FFFFFF'
+];
 
 module.exports = {
     layers,

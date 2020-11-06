@@ -37,7 +37,7 @@ const Artboard = () => {
             onMouseLeave={() => { setHoveredLayer(null) }}
             cursor="default"
         >
-            Artboard - {layout.width} x {layout.height} - {theme.id} Theme
+            Artboard - {layout.width} x {layout.height}
         </Box>
         <Box boxShadow="0 2px 20px rgba(0,0,0,0.1)">
             <ThemeContext.Consumer>
