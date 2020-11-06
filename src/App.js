@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
-import { Flex } from "@chakra-ui/core";
 import './App.css';
-import { Artboard } from './components/Artboard';
-import { paletteList } from './paletteList';
-import { Sidebar } from './components/Sidebar';
 import { ThemeProvider as ChakraProvider, CSSReset } from "@chakra-ui/core";
 import { ThemeProvider } from './providers/theme';
-import { Toolbar } from './components/Toolbar';
-import { Properties } from './components/Properties';
+import { Layout } from './Layout';
 
 var FontFaceObserver = require('fontfaceobserver');
-
-const palette = paletteList.default;
 
 function App() {
 
@@ -49,22 +42,7 @@ function App() {
     <ChakraProvider>
       <CSSReset />
       <ThemeProvider>
-        <Flex height="100vh" direction="column">
-          <Toolbar />
-          <Flex height="100%" bg="gray.50">
-            <Sidebar />
-            <Flex
-              flexGrow={1}
-              flexShrink={1}
-              justifyContent="center"
-              alignItems="center"
-              overflow="hidden"
-            >
-              <Artboard palette={palette} />
-            </Flex>
-            <Properties />
-          </Flex>
-        </Flex>
+        <Layout />
       </ThemeProvider>
     </ChakraProvider>
   );

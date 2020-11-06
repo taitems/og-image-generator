@@ -16,8 +16,6 @@ const Properties = () => {
 
     const onSettingChange = (settingKey, settingValue) => {
 
-        console.log({ settingKey, settingValue })
-
         const newFlatSettings = merge(theme.userSettings, {
             [selectedLayer]: {
                 [settingKey]: settingValue

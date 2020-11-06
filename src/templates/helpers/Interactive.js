@@ -1,3 +1,4 @@
+import { theme } from '@chakra-ui/core';
 import React, { useState } from 'react';
 import { Group } from "react-konva";
 import { useTheme } from '../../providers/theme';
@@ -6,10 +7,10 @@ import { DrawBox } from './DrawBox';
 const Interactive = ({ id, children }) => {
 
     const [{ hoveredLayer, selectedLayer }, { setHoveredLayer, setSelectedLayer }] = useTheme();
-
     const isHovered = hoveredLayer && hoveredLayer === id;
     const isSelected = selectedLayer && selectedLayer === id;
     const [dimensions, setDimensions] = useState(null);
+    const { colors } = theme;
 
     return (
         <>
@@ -27,26 +28,11 @@ const Interactive = ({ id, children }) => {
                 onMouseLeave={e => {
                     setHoveredLayer(null);
                 }}
-                ref={node => {
-                    // if (node && (isHovered || isSelected) && !dimensions) {
-                    //     const { x, y } = node.getAbsolutePosition();
-                    //     // const { width, height } = node.getClientRect();
-                    //     const width = node.width();
-                    //     const height = node.height();
-                    //     setDimensions({ x, y, width, height });
-                    //     // if (hoveredLayer === id) {
-                    //     //     setHoveredLayerDimensions({ x, y, width, height });
-                    //     // }
-                    //     // if (selectedLayer === id) {
-                    //     //     setSelectedLayerDimensions({ x, y, width, height });
-                    //     // }
-                    // }
-                }}
             >
                 {children}
             </Group>
-            {isSelected && dimensions && <DrawBox dimensions={dimensions} color="#ff0000" />}
-            {isHovered && dimensions && !isSelected && <DrawBox dimensions={dimensions} color="#0092FB" />}
+            {isSelected && dimensions && <DrawBox dimensions={dimensions} color={colors.blue['300']} strokeWidth={3} />}
+            {isHovered && dimensions && !isSelected && <DrawBox dimensions={dimensions} color={colors.blue['200']} strokeWidth={3} />}
         </>
     )
 }

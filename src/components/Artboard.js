@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from "@chakra-ui/core";
-import { Stage, Layer, Text } from "react-konva";
-import loadable from '@loadable/component';
+import { Stage } from "react-konva";
 import { ThemeContext, useTheme } from '../providers/theme';
 import PeopleTheme from '../templates/people';
 import DefaultTheme from '../templates/default';
@@ -20,10 +19,20 @@ const SelectedTheme = ({ id }) => {
 
 const Artboard = () => {
 
-    const [{ stageRef, theme, layout }] = useTheme();
+    const [{ stageRef, theme, layout, hoveredLayer, selectedLayer }, { setSelectedLayer, setHoveredLayer }] = useTheme();
+    const isHovered = hoveredLayer === 'artboard';
+    const isSelected = selectedLayer === 'artboard';
 
     return <Box>
-        <Box fontSize={13} py={1} color="gray.400">
+        <Box
+            fontSize={13}
+            py={1}
+            color={isHovered || isSelected ? 'blue.400' : 'gray.400'}
+            onClick={() => { setSelectedLayer('artboard') }}
+            onMouseEnter={() => { setHoveredLayer('artboard') }}
+            onMouseLeave={() => { setHoveredLayer(null) }}
+            cursor="default"
+        >
             Artboard - {layout.width} x {layout.height} - {theme.id} Theme
         </Box>
         <Box boxShadow="0 2px 20px rgba(0,0,0,0.1)">

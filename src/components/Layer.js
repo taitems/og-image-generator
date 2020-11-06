@@ -2,9 +2,9 @@ import React from 'react';
 import { Box, Flex } from "@chakra-ui/core";
 
 const Layer = ({ label, level, visible = true, type, selected, hovered, ...theRest }) => {
-    const bg = selected ? 'red' : hovered ? '#EEE' : 'transparent';
+    const bg = selected ? 'cyan.50' : hovered ? 'blue.50' : 'transparent';
     return (
-        <Flex pl={level * 30} fontSize={14} py={1} background={bg} {...theRest}>
+        <Flex pl={level * 30} fontSize={14} py={1} bg={bg} {...theRest}>
             <Box mr={1}>
                 <img src={`/svg/${getIcon(type)}`} alt="" />
             </Box>

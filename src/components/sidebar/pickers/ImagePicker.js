@@ -15,8 +15,6 @@ import { Thumbs } from './ImagePickerThumbs'
 
 const ImagePicker = ({ onChange, value, options }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    console.log({ options })
-
 
     return (
         <>

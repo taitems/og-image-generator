@@ -1,15 +1,15 @@
 import React from 'react';
 import { Rect } from "react-konva";
 
-const DrawBox = ({ color, dimensions }) => {
+const DrawBox = ({ color, dimensions, strokeWidth }) => {
     return (
         <Rect
             x={dimensions.x + 1}
             y={dimensions.y + 1}
-            width={dimensions.width - 2}
-            height={dimensions.height - 2}
+            width={dimensions.width - strokeWidth}
+            height={dimensions.height - strokeWidth}
             stroke={color}
-            strokeWidth={2}
+            strokeWidth={strokeWidth}
             fillEnabled={false}
         />
     );

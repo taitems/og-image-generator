@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
-import useImage from 'use-image';
 import { useTheme } from '../../providers/theme';
 import { GitHubLogo, ImageBoundingBox, CenterGroup } from '../helpers';
 import { Interactive } from '../helpers/Interactive';
