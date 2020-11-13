@@ -19,6 +19,11 @@ const layers = [{
             value: '#FFF'
         }]
     }, {
+        type: 'image',
+        id: 'avatar',
+        label: 'Avatar',
+        settings: []
+    }, {
         type: 'text',
         id: 'repoInfo',
         label: 'Information',
@@ -38,13 +43,6 @@ const layers = [{
             label: 'Color',
             value: '#FFFFFF'
         }]
-    },
-    {
-        type: 'image',
-        id: 'avatar',
-        label: 'Avatar',
-        editable: false,
-        visible: false,
     }]
 }]
 const palette = ['#030047', '#FF3E6C', '#FFC2D6', '#FFCC3E', '#5F5FFF'];

@@ -3,6 +3,7 @@ import { Layer, Group, Rect, Text } from "react-konva";
 import { useTheme } from '../../providers/theme';
 import { ShapeGrid, GitHubLogo } from '../helpers';
 import { Interactive } from '../helpers/Interactive';
+import { UserAvatar } from '../helpers/UserAvatar';
 
 const CenteredTheme = props => {
 
@@ -38,7 +39,22 @@ const CenteredTheme = props => {
 
 
         <Interactive id="githubLogo">
-            <GitHubLogo fill={layers.githubLogo.fill} width={LOGO_SIZE} height={LOGO_SIZE} x={width / 2 - (LOGO_SIZE / 2)} y={128} />
+            <GitHubLogo
+                fill={layers.githubLogo.fill}
+                width={LOGO_SIZE}
+                height={LOGO_SIZE}
+                x={(width / 2) - (LOGO_SIZE - 10)}
+                y={128}
+            />
+        </Interactive>
+        <Interactive id="avatar">
+            <UserAvatar
+                src={repo.owner.avatar_url}
+                width={LOGO_SIZE}
+                height={LOGO_SIZE}
+                x={(width / 2) - 10}
+                y={128}
+            />
         </Interactive>
 
         <Interactive id="repoInfo">

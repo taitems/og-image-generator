@@ -17,14 +17,11 @@ const FetchUrl = ({ callback }) => {
     }
 
     const onSubmit = e => {
-        // console.log(getProvider())
         const provider = getProvider(url);
         if (provider === 'github') {
             // url.
             const path = url.split('github.com/')[1];
             const [username, repo] = path.split('/');
-            console.log({ username });
-            console.log({ repo });
             callback({
                 provider,
                 username,

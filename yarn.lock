@@ -9133,6 +9133,11 @@ react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-konva-helpers@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-konva-helpers/-/react-konva-helpers-0.0.5.tgz#c4a1b3a9983835994786e9ad072290a62e383952"
+  integrity sha512-OyS23PkLV9Qvb/isNj1fFI2HkPNtG/M7OmLpVzcVJyIRqJEMseGwYxKrDfrH4iaFIViJp8XLb/fyyDVomya3bQ==
+
 react-konva@^16.13.0-3:
   version "16.13.0-3"
   resolved "https://registry.yarnpkg.com/react-konva/-/react-konva-16.13.0-3.tgz#9ef1e813c8b2dd61b54b26151ccbdeed52b89a80"

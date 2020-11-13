@@ -20,8 +20,6 @@ const RepoPicker = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();
 
-    console.log({ repo })
-
     return (<>
         <Flex>
             <Box flexShrink="0">
@@ -74,7 +72,6 @@ const RepoPicker = () => {
                         const { provider, username, repo } = item;
                         if (provider === 'github') {
                             const githubRepo = await getGithubRepo(username, repo);
-                            console.log({ githubRepo });
                             if (githubRepo.message) {
                                 toast({
                                     title: "An error occurred.",

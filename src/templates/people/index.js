@@ -3,6 +3,7 @@ import { Layer, Group, Rect, Text } from "react-konva";
 import { useTheme } from '../../providers/theme';
 import { GitHubLogo, ImageBoundingBox, CenterGroup } from '../helpers';
 import { Interactive } from '../helpers/Interactive';
+import { UserAvatar } from '../helpers/UserAvatar';
 
 const PeopleTheme = () => {
 
@@ -60,6 +61,9 @@ const PeopleTheme = () => {
             <Group>
                 <Interactive id="githubLogo">
                     <GitHubLogo fill={layers.githubLogo.fill} width={32} height={32} y={-6} />
+                </Interactive>
+                <Interactive id="avatar">
+                    <UserAvatar src={repo.owner.avatar_url} x={0} y={-6} width={32} height={32} />
                 </Interactive>
                 <Interactive id="repoInfo">
                     <Text
