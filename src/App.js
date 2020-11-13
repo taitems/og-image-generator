@@ -11,10 +11,13 @@ function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
 
-  var fontA = new FontFaceObserver('Inter', {
+  var fontA400 = new FontFaceObserver('Inter', {
     weight: 400
   });
-  var fontB = new FontFaceObserver('Inter', {
+  var fontA600 = new FontFaceObserver('Inter', {
+    weight: 600
+  })
+  var fontA800 = new FontFaceObserver('Inter', {
     weight: 800
   })
   var fontC = new FontFaceObserver('Poppins', {
@@ -28,8 +31,9 @@ function App() {
   });
 
   Promise.all([
-    fontA.load(),
-    fontB.load(),
+    fontA400.load(),
+    fontA600.load(),
+    fontA800.load(),
     fontC.load(),
     fontD.load(),
     fontE.load(),

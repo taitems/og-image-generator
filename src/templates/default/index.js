@@ -48,7 +48,7 @@ const DefaultTheme = () => {
                 <Interactive id="repoInfo">
                     <Text
                         text={full_name}
-                        fontFamily="Poppins"
+                        fontFamily={layers.repoInfo.font}
                         fontSize={24}
                         fontStyle={600}
                         x={42}
@@ -60,7 +60,7 @@ const DefaultTheme = () => {
             <Interactive id="description">
                 <Text
                     text={description}
-                    fontFamily="Poppins"
+                    fontFamily={layers.description.font}
                     fontSize={72}
                     fontStyle={600}
                     fill={layers.description.color}

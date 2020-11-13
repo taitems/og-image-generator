@@ -18,6 +18,15 @@ const layers = [{
             type: 'color',
             label: 'Color',
             value: '#FFF'
+        }, {
+            id: 'font',
+            type: 'font',
+            label: 'Font',
+            value: 'Poppins',
+            options: [
+                'Poppins',
+                'Inter'
+            ]
         }]
     },
     {
@@ -49,6 +58,15 @@ const layers = [{
                 type: 'color',
                 label: 'Color',
                 value: '#FFF'
+            }, {
+                id: 'font',
+                type: 'font',
+                label: 'Font',
+                value: 'Poppins',
+                options: [
+                    'Poppins',
+                    'Inter'
+                ]
             }]
         }]
     }, {

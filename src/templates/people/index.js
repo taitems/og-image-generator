@@ -68,7 +68,7 @@ const PeopleTheme = () => {
                 <Interactive id="repoInfo">
                     <Text
                         text={full_name}
-                        fontFamily="Poppins"
+                        fontFamily={layers.repoInfo.font}
                         fontSize={24}
                         fontStyle={400}
                         x={42}

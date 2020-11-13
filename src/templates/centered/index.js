@@ -1,7 +1,9 @@
 import React from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
 import { useTheme } from '../../providers/theme';
-import { ShapeGrid, GitHubLogo } from '../helpers';
+import { ShapeGrid, GitHubLogo, IconFork } from '../helpers';
+import { IconIssues } from '../helpers/IconIssues';
+import { IconStars } from '../helpers/IconStars';
 import { Interactive } from '../helpers/Interactive';
 import { UserAvatar } from '../helpers/UserAvatar';
 
@@ -86,37 +88,43 @@ const CenteredTheme = props => {
             />
         </Interactive>
 
-        <Group y={490}>
-            <Text
-                text={Intl.NumberFormat().format(forks)}
-                fontFamily="Poppins"
-                fontSize={28}
-                fontStyle={400}
-                fill={layers.userTextColor}
-                width={width}
-                align="left"
-                x={100}
-            />
-            <Text
-                text={Intl.NumberFormat().format(open_issues)}
-                fontFamily="Poppins"
-                fontSize={28}
-                fontStyle={400}
-                fill={layers.userTextColor}
-                width={width}
-                x={200}
-                align="left"
-            />
-            <Text
-                text={Intl.NumberFormat().format(watchers)}
-                fontFamily="Poppins"
-                fontSize={28}
-                fontStyle={400}
-                fill={layers.userTextColor}
-                width={width}
-                x={300}
-                align="left"
-            />
+
+        <Group y={490} x={400} width={200}>
+            <Interactive id="stats">
+                <IconFork fill={layers.stats.iconColor} x={0} />
+                <Text
+                    text={Intl.NumberFormat().format(forks)}
+                    fontFamily="Poppins"
+                    fontSize={28}
+                    fontStyle={400}
+                    fill={layers.stats.textColor}
+                    width={width}
+                    align="left"
+                    x={32}
+                />
+                <IconIssues fill={layers.stats.iconColor} x={100} />
+                <Text
+                    text={Intl.NumberFormat().format(open_issues)}
+                    fontFamily="Poppins"
+                    fontSize={28}
+                    fontStyle={400}
+                    fill={layers.stats.textColor}
+                    width={width}
+                    x={132}
+                    align="left"
+                />
+                <IconStars fill={layers.stats.iconColor} x={200} />
+                <Text
+                    text={Intl.NumberFormat().format(watchers)}
+                    fontFamily="Poppins"
+                    fontSize={28}
+                    fontStyle={400}
+                    fill={layers.stats.textColor}
+                    width={width}
+                    x={232}
+                    align="left"
+                />
+            </Interactive>
         </Group>
     </Layer>
 }

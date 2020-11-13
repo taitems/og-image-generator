@@ -25,7 +25,8 @@ const layers = [{
             value: 'Poppins',
             options: [
                 'Poppins',
-                'Libre Baskerville'
+                'Libre Baskerville',
+                'Inter'
             ]
         }]
     },
@@ -59,6 +60,16 @@ const layers = [{
                 type: 'color',
                 label: 'Color',
                 value: '#030047'
+            }, {
+                id: 'font',
+                type: 'font',
+                label: 'Font',
+                value: 'Poppins',
+                options: [
+                    'Poppins',
+                    'Libre Baskerville',
+                    'Inter'
+                ]
             }]
         }]
     }, {

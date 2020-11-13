@@ -43,6 +43,21 @@ const layers = [{
             label: 'Color',
             value: '#FFFFFF'
         }]
+    }, {
+        type: 'group',
+        id: 'stats',
+        label: 'Stats',
+        settings: [{
+            id: 'textColor',
+            type: 'color',
+            label: 'Text Color',
+            value: '#FFFFFF'
+        }, {
+            id: 'iconColor',
+            type: 'color',
+            label: 'Icon Color',
+            value: 'rgba(255,255,255,0.66)'
+        }]
     }]
 }]
 const palette = ['#030047', '#FF3E6C', '#FFC2D6', '#FFCC3E', '#5F5FFF'];

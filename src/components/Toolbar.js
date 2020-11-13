@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, Flex, Box, Button, Link } from "@chakra-ui/core";
+import pkg from '../../package.json';
 
 const Toolbar = () => {
 
@@ -10,7 +11,7 @@ const Toolbar = () => {
             boxShadow="0 2px 8px rgba(0,0,0,0.1)"
             pos="relative"
         >
-            <Text as="h1" fontWeight="800" fontSize="18px" letterSpacing="-.025em">OG Image Creator</Text>
+            <Text as="h1" fontWeight="800" fontSize="18px" letterSpacing="-.025em">OG Image Creator - v{pkg.version}</Text>
             <Box justifySelf="flex-end">
                 <Button variantColor="teal" variant="ghost" size="sm">
                     <Link href="https://github.com/taitems/og-image-generator/issues" isExternal>Issues/Feedback</Link>
