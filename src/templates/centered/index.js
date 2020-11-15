@@ -1,11 +1,13 @@
 import React from 'react';
 import { Layer, Group, Rect, Text } from "react-konva";
+import { SvgIcon } from "react-konva-helpers";
 import { useTheme } from '../../providers/theme';
-import { ShapeGrid, GitHubLogo, IconFork } from '../helpers';
-import { IconIssues } from '../helpers/IconIssues';
-import { IconStars } from '../helpers/IconStars';
+import { ShapeGrid, GitHubLogo } from '../helpers';
 import { Interactive } from '../helpers/Interactive';
 import { UserAvatar } from '../helpers/UserAvatar';
+import GithubForkIcon from '../../svg/gh-fork';
+import GithubIssuesIcon from '../../svg/gh-issues';
+import GithubStarIcon from '../../svg/gh-star';
 
 const CenteredTheme = props => {
 
@@ -13,6 +15,9 @@ const CenteredTheme = props => {
     const { width, height } = layout;
     const { full_name, description, forks, open_issues, watchers } = repo;
     const layers = theme.userSettings;
+
+
+
 
     const LOGO_SIZE = 180;
 
@@ -45,7 +50,6 @@ const CenteredTheme = props => {
                 fill={layers.githubLogo.fill}
                 width={LOGO_SIZE}
                 height={LOGO_SIZE}
-                x={(width / 2) - (LOGO_SIZE - 10)}
                 y={128}
             />
         </Interactive>
@@ -54,7 +58,6 @@ const CenteredTheme = props => {
                 src={repo.owner.avatar_url}
                 width={LOGO_SIZE}
                 height={LOGO_SIZE}
-                x={(width / 2) - 10}
                 y={128}
             />
         </Interactive>
@@ -91,7 +94,7 @@ const CenteredTheme = props => {
 
         <Group y={490} x={400} width={200}>
             <Interactive id="stats">
-                <IconFork fill={layers.stats.iconColor} x={0} />
+                <SvgIcon xml={GithubForkIcon} fill={layers.stats.iconColor} x={0} />
                 <Text
                     text={Intl.NumberFormat().format(forks)}
                     fontFamily="Poppins"
@@ -102,7 +105,7 @@ const CenteredTheme = props => {
                     align="left"
                     x={32}
                 />
-                <IconIssues fill={layers.stats.iconColor} x={100} />
+                <SvgIcon xml={GithubIssuesIcon} fill={layers.stats.iconColor} x={100} />
                 <Text
                     text={Intl.NumberFormat().format(open_issues)}
                     fontFamily="Poppins"
@@ -113,7 +116,7 @@ const CenteredTheme = props => {
                     x={132}
                     align="left"
                 />
-                <IconStars fill={layers.stats.iconColor} x={200} />
+                <SvgIcon xml={GithubStarIcon} fill={layers.stats.iconColor} x={200} />
                 <Text
                     text={Intl.NumberFormat().format(watchers)}
                     fontFamily="Poppins"
