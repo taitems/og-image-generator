@@ -6,7 +6,9 @@ const FontPicker = ({ onChange, value, options }) => {
         <Select
             zIndex={1}
             size="sm"
-            onChange={onChange}
+            onChange={e => {
+                onChange(e.target.value)
+            }}
             value={value}
         >
             {options.map(item => (

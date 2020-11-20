@@ -27,6 +27,11 @@ const layers = [{
                 'Poppins',
                 'Inter'
             ]
+        }, {
+            id: 'customDescription',
+            type: 'description',
+            label: 'Override Description',
+            value: null
         }]
     },
     {

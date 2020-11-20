@@ -9,10 +9,12 @@ const DefaultTheme = () => {
 
     const [{ theme, layout, repo }] = useTheme();
     const { width, height } = layout;
-    const { full_name, description } = repo;
+    const { full_name } = repo;
     const layers = theme.userSettings;
 
     const [textHeight, setTextHeight] = useState(null);
+
+    const description = layers.description.customDescription || repo.description;
 
     return <Layer>
 

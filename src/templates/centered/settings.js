@@ -36,7 +36,7 @@ const layers = [{
     }, {
         type: 'text',
         id: 'description',
-        label: 'Description',
+        label: 'Override Description',
         settings: [{
             id: 'color',
             type: 'color',

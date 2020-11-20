@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Box } from '@chakra-ui/core';
 import { SketchPicker } from 'react-color';
 
 
-const ColorPicker = ({ id, value, isOpen, color, onChange, palette, updateOpenState }) => {
+const ColorPicker = ({ id, value, color, onChange, palette, updateOpenState }) => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const localOnChange = c => {
+        const { r, g, b, a } = c.rgb;
+        const color = a < 1 ? `rgba(${r},${g},${b},${a})` : c.hex;
+        onChange(color);
+    }
+
     return (
         <>
             <Box position="relative">
@@ -21,18 +30,18 @@ const ColorPicker = ({ id, value, isOpen, color, onChange, palette, updateOpenSt
                 <Input
                     value={value}
                     pl={'36px'}
-                    onClick={() => { updateOpenState({ [id]: true }) }}
+                    onClick={() => { setIsOpen(true) }}
                     readOnly
                 />
             </Box>
             {isOpen && <>
                 <Box position="fixed" top="0" right="0" bottom="0" left="0" onClick={() => {
-                    updateOpenState({ [id]: false })
+                    setIsOpen(false)
                 }} />
                 <Box position="absolute" zIndex={2}>
                     <SketchPicker
                         color={color}
-                        onChange={onChange}
+                        onChange={localOnChange}
                         presetColors={palette}
                     />
                 </Box>
