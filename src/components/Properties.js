@@ -38,7 +38,7 @@ const Properties = () => {
             p={3}
             w={250}
             background="white"
-            boxShadow="0 2px 8px rgba(0,0,0,0.1)"
+            boxShadow="0 2px 4px rgba(0,0,0,0.1), 0 3px 12px rgba(0,0,0,0.05)"
             flexDirection="column"
         >
             <Box flexGrow={1}>

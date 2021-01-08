@@ -8,10 +8,29 @@ const Toolbar = () => {
         <Flex
             justifyContent="space-between"
             p={2}
-            boxShadow="0 2px 8px rgba(0,0,0,0.1)"
+            boxShadow="0 2px 4px rgba(0,0,0,0.1), 0 3px 12px rgba(0,0,0,0.05)"
             pos="relative"
         >
-            <Text as="h1" fontWeight="800" fontSize="18px" letterSpacing="-.025em">OG Image Creator - v{pkg.version}</Text>
+            <Flex>
+                <Text
+                    as="h1"
+                    fontWeight="800"
+                    fontSize="18px"
+                    letterSpacing="-.025em"
+                >
+                    OG Image Creator
+                </Text>
+                <Text
+                    as="span"
+                    fontSize="10px"
+                    letterSpacing=".05em"
+                    color="gray.500"
+                    ml={2}
+                >
+                    <span style={{ marginRight: '1px' }}>V</span>
+                    {pkg.version}
+                </Text>
+            </Flex>
             <Box justifySelf="flex-end">
                 <Button colorScheme="teal" variant="ghost" size="sm">
                     <Link href="https://github.com/taitems/og-image-generator/issues" isExternal>Issues/Feedback</Link>

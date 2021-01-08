@@ -43,6 +43,20 @@ const layers = [{
             type: 'color',
             label: 'Color',
             value: 'rgba(255,255,255,0.8)'
+        }, {
+            id: 'font',
+            type: 'font',
+            label: 'Font',
+            value: 'Poppins',
+            options: [
+                'Poppins',
+                'Inter'
+            ]
+        }, {
+            id: 'customDescription',
+            type: 'description',
+            label: 'Override Description',
+            value: null
         }]
     }, {
         type: 'group',

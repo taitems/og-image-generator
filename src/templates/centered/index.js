@@ -13,8 +13,9 @@ const CenteredTheme = props => {
 
     const [{ theme, layout, repo }] = useTheme();
     const { width, height } = layout;
-    const { full_name, description, forks, open_issues, watchers } = repo;
+    const { full_name, forks, open_issues, watchers } = repo;
     const layers = theme.userSettings;
+    const description = layers.description.customDescription || repo.description;
 
 
 

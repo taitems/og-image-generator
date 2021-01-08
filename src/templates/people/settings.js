@@ -28,6 +28,11 @@ const layers = [{
                 'Libre Baskerville',
                 'Inter'
             ]
+        }, {
+            id: 'customDescription',
+            type: 'description',
+            label: 'Override Description',
+            value: null
         }]
     },
     {

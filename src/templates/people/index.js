@@ -9,8 +9,10 @@ const PeopleTheme = () => {
 
     const [{ theme, layout, repo }] = useTheme();
     const { width, height } = layout;
-    const { full_name, description } = repo;
+    const { full_name } = repo;
     const layers = theme.userSettings;
+
+    const description = layers.description.customDescription || repo.description;
 
     const isCurrentTheme = theme.id === 'people';
 

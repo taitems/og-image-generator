@@ -27,7 +27,14 @@ const Thumbs = ({ options, value, callback }) => {
                 const localStyle = p === value ? selectedStyle : unselectedStyle;
                 const thumbUrl = `images/${p.replace('.png', '-thumb.png')}`
                 return <Box p={3} key={p}>
-                    <Image src={thumbUrl} width={120} height={120} objectFit="contain" {...localStyle} onClick={e => { handleClick(p) }} />
+                    <Image
+                        src={thumbUrl}
+                        width={120}
+                        height={120}
+                        objectFit="contain"
+                        {...localStyle}
+                        onClick={e => { handleClick(p) }}
+                    />
                 </Box>
             })}
         </Flex>

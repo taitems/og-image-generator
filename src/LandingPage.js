@@ -30,7 +30,7 @@ const LandingPage = () => {
                     bg="gray.900"
                     _hover={{ bg: "gray.700" }}
                     color="white"
-                    px={10}
+                    px={8}
                     mb={3}
                 >
                     Open Editor
