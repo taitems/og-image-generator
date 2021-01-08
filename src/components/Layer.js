@@ -1,17 +1,15 @@
 import React from 'react';
-import { Box, Flex, Image } from "@chakra-ui/core";
+import { Box, Flex, Image } from "@chakra-ui/react";
 import { uiColors } from '../util/uiColors';
 
 const { sidebarLayer } = uiColors;
-
-
 
 const Layer = ({ label, id, level, visible = true, hideable = true, type, selected, hovered, setVisibility, ...theRest }) => {
     const hoveredColor = visible ? sidebarLayer.hovered : sidebarLayer.disabledHover;
     const selectedColor = visible ? sidebarLayer.selected : sidebarLayer.disabledSelected;
     const bg = selected ? selectedColor : hovered ? hoveredColor : 'transparent';
     return (
-        <Flex pl={level * 30} fontSize={14} py={1} bg={bg} cursor="default" {...theRest}>
+        <Flex pl={level * 30 + 'px'} fontSize={14} py={1} bg={bg} cursor="default" {...theRest}>
             <Box mr={1}>
                 <Image src={`/svg/${getIcon(type)}`} />
             </Box>

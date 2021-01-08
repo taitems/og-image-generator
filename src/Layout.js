@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex } from "@chakra-ui/core";
+import { Flex } from "@chakra-ui/react";
 import { Artboard } from './components/Artboard';
 import { Sidebar } from './components/Sidebar';
 import { Toolbar } from './components/Toolbar';

@@ -33,32 +33,52 @@ const CenteredTheme = props => {
             />
         </Interactive>
 
-        <ShapeGrid
-            color={'#FFF'}
-            shape={'circle'}
-            rows={20}
-            columns={4}
-            offsetX={60}
-            offsetY={60}
-            x={-10}
-            y={-30}
-        />
 
+        <Group x={width - 305} y={30}>
+            <Interactive id="shapeGrid1">
+                <ShapeGrid
+                    color={layers.shapeGrid1.fill}
+                    shape={'circle'}
+                    rows={3}
+                    size={6}
+                    columns={7}
+                    offsetX={45}
+                    offsetY={45}
+                />
+            </Interactive>
+        </Group>
+
+        <Group x={30} y={height - 120}>
+            <Interactive id="shapeGrid2">
+                <ShapeGrid
+                    color={layers.shapeGrid2.fill}
+                    shape={'circle'}
+                    rows={3}
+                    size={6}
+                    columns={7}
+                    offsetX={45}
+                    offsetY={45}
+                />
+            </Interactive>
+        </Group>
+
+        <Interactive id="avatar">
+            <UserAvatar
+                src={repo.owner.avatar_url}
+                width={LOGO_SIZE}
+                height={LOGO_SIZE}
+                y={112}
+                x={(width - LOGO_SIZE) / 2}
+            />
+        </Interactive>
 
         <Interactive id="githubLogo">
             <GitHubLogo
                 fill={layers.githubLogo.fill}
                 width={LOGO_SIZE}
                 height={LOGO_SIZE}
-                y={128}
-            />
-        </Interactive>
-        <Interactive id="avatar">
-            <UserAvatar
-                src={repo.owner.avatar_url}
-                width={LOGO_SIZE}
-                height={LOGO_SIZE}
-                y={128}
+                y={112}
+                x={(width - LOGO_SIZE) / 2}
             />
         </Interactive>
 
@@ -72,7 +92,7 @@ const CenteredTheme = props => {
                 width={width * .8}
                 align="center"
                 x={width * .1}
-                y={128 + LOGO_SIZE + 40}
+                y={112 + LOGO_SIZE + 40}
             />
         </Interactive>
 
@@ -81,18 +101,18 @@ const CenteredTheme = props => {
             <Text
                 text={description}
                 fontFamily="Poppins"
-                fontSize={28}
+                fontSize={32}
                 fontStyle={400}
                 fill={layers.description.color}
-                width={width * .8}
-                x={width * .1}
-                y={410}
+                width={width * .85}
+                x={width * .075}
+                y={398}
                 align="center"
             />
         </Interactive>
 
 
-        <Group y={490} x={400} width={200}>
+        <Group y={470} x={400} width={200}>
             <Interactive id="stats">
                 <SvgIcon xml={GithubForkIcon} fill={layers.stats.iconColor} x={0} />
                 <Text

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/react";
 import { Stage } from "react-konva";
 import { ThemeContext, useTheme } from '../providers/theme';
 import PeopleTheme from '../templates/people';

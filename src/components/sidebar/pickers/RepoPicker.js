@@ -9,7 +9,8 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
+import { CheckIcon } from '@chakra-ui/icons';
 import { useTheme } from "../../../providers/theme"
 import { FetchUrl } from '../../FetchUrl';
 import { getGithubRepo } from '../../getGithubRepo';
@@ -85,9 +86,13 @@ const RepoPicker = () => {
                                 setRepo(githubRepo);
                                 onClose();
                                 toast({
-                                    title: `Switched to ${githubRepo.full_name}`,
-                                    status: "success",
                                     position: "top",
+                                    render: () => (
+                                        <Box bg="#000" color="#FFF" py={2} px={3} borderRadius={4}>
+                                            <CheckIcon />
+                                            Switched to {githubRepo.full_name}
+                                        </Box>
+                                    )
                                 })
                             }
                         }
@@ -96,7 +101,7 @@ const RepoPicker = () => {
 
                 </ModalBody>
                 <ModalFooter>
-                    <Button variantColor="gray" onClick={onClose}>
+                    <Button colorScheme="gray" onClick={onClose}>
                         Cancel
                     </Button>
                 </ModalFooter>

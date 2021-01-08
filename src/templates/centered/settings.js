@@ -6,7 +6,7 @@ const layers = [{
         id: 'background',
         type: 'color',
         label: 'Background',
-        value: '#0160FA'
+        value: '#3F00F1'
     }],
     children: [{
         type: 'svg',
@@ -22,6 +22,7 @@ const layers = [{
         type: 'image',
         id: 'avatar',
         label: 'Avatar',
+        visible: false,
         settings: []
     }, {
         type: 'text',
@@ -36,12 +37,12 @@ const layers = [{
     }, {
         type: 'text',
         id: 'description',
-        label: 'Override Description',
+        label: 'Description',
         settings: [{
             id: 'color',
             type: 'color',
             label: 'Color',
-            value: '#FFFFFF'
+            value: 'rgba(255,255,255,0.8)'
         }]
     }, {
         type: 'group',
@@ -57,6 +58,26 @@ const layers = [{
             type: 'color',
             label: 'Icon Color',
             value: 'rgba(255,255,255,0.66)'
+        }]
+    }, {
+        type: 'symbol',
+        id: 'shapeGrid1',
+        label: 'Shape Grid 1',
+        settings: [{
+            type: 'color',
+            id: 'fill',
+            label: 'Fill',
+            value: 'rgba(255,255,255,0.35)'
+        }]
+    }, {
+        type: 'symbol',
+        id: 'shapeGrid2',
+        label: 'Shape Grid 2',
+        settings: [{
+            type: 'color',
+            id: 'fill',
+            label: 'Fill',
+            value: 'rgba(255,255,255,0.35)'
         }]
     }]
 }]

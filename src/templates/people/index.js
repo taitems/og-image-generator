@@ -59,11 +59,11 @@ const PeopleTheme = () => {
         <CenterGroup x={100} stageHeight={height} innerHeight={textHeight && 50 + textHeight}>
 
             <Group>
-                <Interactive id="githubLogo">
-                    <GitHubLogo fill={layers.githubLogo.fill} width={32} height={32} y={-6} />
-                </Interactive>
                 <Interactive id="avatar">
                     <UserAvatar src={repo.owner.avatar_url} x={0} y={-6} width={32} height={32} />
+                </Interactive>
+                <Interactive id="githubLogo">
+                    <GitHubLogo fill={layers.githubLogo.fill} width={32} height={32} y={-6} />
                 </Interactive>
                 <Interactive id="repoInfo">
                     <Text

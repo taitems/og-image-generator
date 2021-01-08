@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex } from '@chakra-ui/core';
+import { Box, Flex } from '@chakra-ui/react';
 import { useTheme } from '../providers/theme';
 import { merge } from 'lodash';
 import { DownloadButton } from './DownloadButton';

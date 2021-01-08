@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Select } from "@chakra-ui/core";
+import { Box, Select } from "@chakra-ui/react";
 import { list } from '../templates/list';
 import { useTheme } from '../providers/theme';
 import { flattenSettings } from '../util/flattenSettings';

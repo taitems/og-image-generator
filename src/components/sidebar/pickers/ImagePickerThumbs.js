@@ -3,7 +3,7 @@ import {
     Image,
     Flex,
     Box
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 
 const Thumbs = ({ options, value, callback }) => {
 

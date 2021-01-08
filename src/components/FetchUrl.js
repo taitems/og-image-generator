@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Button, Flex } from "@chakra-ui/core";
+import { Input, Button, Flex } from "@chakra-ui/react";
 
 // https://api.github.com/users/taitems/repos
 // https://api.github.com/repos/taitems/Appfail-JavaScript
@@ -39,7 +39,7 @@ const FetchUrl = ({ callback }) => {
                 onChange={e => { setUrl(e.target.value) }}
                 value={url}
             />
-            <Button type="submit" variantColor="blue">Fetch</Button>
+            <Button type="submit" colorScheme="blue">Fetch</Button>
         </Flex>
     </form>
 }

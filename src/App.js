@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import { ThemeProvider as ChakraProvider, CSSReset } from "@chakra-ui/core";
+// import { ThemeProvider as ChakraProvider, CSSReset } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react"
 import { ThemeProvider } from './providers/theme';
 import { Layout } from './Layout';
 
@@ -44,7 +45,6 @@ function App() {
   return fontsLoaded && (
 
     <ChakraProvider>
-      <CSSReset />
       <ThemeProvider>
         <Layout />
       </ThemeProvider>

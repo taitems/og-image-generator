@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select } from '@chakra-ui/core';
+import { Select } from '@chakra-ui/react';
 
 const FontPicker = ({ onChange, value, options }) => {
     return (

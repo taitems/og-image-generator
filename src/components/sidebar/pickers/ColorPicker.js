@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Box } from '@chakra-ui/core';
+import { Input, Box } from '@chakra-ui/react';
 import { SketchPicker } from 'react-color';
 
 

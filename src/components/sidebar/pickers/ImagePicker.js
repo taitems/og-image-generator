@@ -10,7 +10,7 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { Thumbs } from './ImagePickerThumbs'
 
 const ImagePicker = ({ onChange, value, options }) => {
@@ -35,7 +35,7 @@ const ImagePicker = ({ onChange, value, options }) => {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button variantColor="blue" onClick={onClose}>
+                        <Button colorScheme="blue" onClick={onClose}>
                             Cancel
                         </Button>
                     </ModalFooter>
