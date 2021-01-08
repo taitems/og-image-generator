@@ -1,6 +1,6 @@
 {
   "name": "og-generator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^1.0.0",
@@ -20,6 +20,7 @@
     "react-dom": "^16.13.1",
     "react-konva": "^16.13.0-3",
     "react-konva-helpers": "^0.0.7",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "theme-ui": "^0.3.1",
     "use-image": "^1.0.6"

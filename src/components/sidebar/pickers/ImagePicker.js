@@ -22,7 +22,7 @@ const ImagePicker = ({ onChange, value, options }) => {
 
             <Button onClick={onOpen}>Open Modal</Button>
 
-            <Modal isOpen={isOpen} onClose={onClose} size={640}>
+            <Modal isOpen={isOpen} onClose={onClose} size="xl">
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Choose Image</ModalHeader>

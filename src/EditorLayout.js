@@ -8,7 +8,7 @@ import { useTheme } from './providers/theme';
 
 
 
-const Layout = () => {
+const EditorLayout = () => {
 
   const { setSelectedLayer } = useTheme()[1];
 
@@ -39,4 +39,4 @@ const Layout = () => {
   )
 }
 
-export { Layout };
+export { EditorLayout };

@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
-// import { ThemeProvider as ChakraProvider, CSSReset } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react"
 import { ThemeProvider } from './providers/theme';
-import { Layout } from './Layout';
+import { EditorLayout } from './EditorLayout';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import { LandingPage } from './LandingPage';
 
 var FontFaceObserver = require('fontfaceobserver');
 
@@ -43,12 +48,20 @@ function App() {
   });
 
   return fontsLoaded && (
-
-    <ChakraProvider>
-      <ThemeProvider>
-        <Layout />
-      </ThemeProvider>
-    </ChakraProvider>
+    <Router>
+      <ChakraProvider>
+        <ThemeProvider>
+          <Switch>
+            <Route exact path="/">
+              <LandingPage />
+            </Route>
+            <Route path="/editor">
+              <EditorLayout />
+            </Route>
+          </Switch>
+        </ThemeProvider>
+      </ChakraProvider>
+    </Router>
   );
 }
 
