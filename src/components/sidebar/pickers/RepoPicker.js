@@ -58,7 +58,7 @@ const RepoPicker = () => {
             </Box>
         </Flex>
 
-        <Modal isOpen={isOpen} onClose={onClose} size={640}>
+        <Modal isOpen={isOpen} onClose={onClose} size="xl">
             <ModalOverlay />
             <ModalContent>
                 <ModalHeader>Change Repository</ModalHeader>
