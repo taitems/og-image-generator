@@ -11,14 +11,18 @@ const Layer = ({ label, id, level, visible = true, hideable = true, type, select
     return (
         <Flex pl={level * 30 + 'px'} fontSize={14} py={1} bg={bg} cursor="default" {...theRest}>
             <Box mr={1}>
-                <Image src={`/svg/${getIcon(type)}`} />
+                <Image
+                    src={`/svg/${getIcon(type)}`}
+                    alt={`${capitalizeFirstLetter(type)} icon`}
+                    opacity={visible ? 1 : 0.5}
+                />
             </Box>
-            <Box color={visible ? '#000' : '#AAA'} flexGrow="1">
+            <Box color={visible ? '#000' : 'gray.600'} flexGrow="1">
                 {label}
             </Box>
-            {hideable && !visible && <Image src="/svg/icon-hidden.svg" justifySelf="flex-end" onClick={() => { setVisibility(id, true) }} />}
-            {hideable && (selected || hovered) && visible && <Image src="/svg/icon-visible.svg" justifySelf="flex-end" onClick={() => { setVisibility(id, false) }} />}
-            {!hideable && (selected || hovered) && <Image src="/svg/icon-locked.svg" justifySelf="flex-end" />}
+            {hideable && !visible && <Image src="/svg/icon-hidden.svg" justifySelf="flex-end" onClick={() => { setVisibility(id, true) }} alt="Hidden layer" />}
+            {hideable && (selected || hovered) && visible && <Image src="/svg/icon-visible.svg" justifySelf="flex-end" onClick={() => { setVisibility(id, false) }} alt="Hide layer" />}
+            {!hideable && (selected || hovered) && <Image src="/svg/icon-locked.svg" justifySelf="flex-end" alt="Locked layer" />}
         </Flex>
     );
 }
@@ -37,6 +41,10 @@ const getIcon = type => {
         default:
             return 'icon-layer.svg';
     }
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 export { Layer }

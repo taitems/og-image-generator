@@ -22,9 +22,10 @@ const Toolbar = () => {
                 </Text>
                 <Text
                     as="span"
-                    fontSize="10px"
+                    fontSize="11px"
                     letterSpacing=".05em"
-                    color="gray.500"
+                    color="gray.600"
+                    role="presentation"
                     ml={2}
                 >
                     <span style={{ marginRight: '1px' }}>V</span>

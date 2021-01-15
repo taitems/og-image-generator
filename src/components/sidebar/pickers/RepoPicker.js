@@ -24,7 +24,7 @@ const RepoPicker = () => {
     return (<>
         <Flex>
             <Box flexShrink="0">
-                <Image src="../svg/logo-github.svg" width={30} height={30} />
+                <Image src="../svg/logo-github.svg" width={30} height={30} alt="GitHub logo" />
             </Box>
             <Box ml={2} overflow="hidden">
                 <Text
@@ -48,7 +48,7 @@ const RepoPicker = () => {
                     fontSize={12}>
                     <Link
                         onClick={onOpen}
-                        color="blue.500"
+                        color="blue.600"
                         fontWeight="500"
                         textDecoration="underline"
                     >

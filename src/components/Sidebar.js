@@ -38,9 +38,10 @@ const Sidebar = () => {
                 <RepoPicker />
             </Fieldset>
 
-            <Fieldset title="Theme">
+            <Fieldset title="Theme" id="themeLabel">
                 <Select
                     size="sm"
+                    aria-labelledby="themeLabel"
                     onChange={e => { onThemeChange(e.target.value) }}
                     value={theme.id}>
                     {list.map(item => (

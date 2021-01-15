@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/react';
-const FieldsetHeading = ({ children }) => {
+const FieldsetHeading = ({ children, id = null }) => {
     return (
         <Box
             borderBottomColor="gray.100"
@@ -15,6 +15,7 @@ const FieldsetHeading = ({ children }) => {
                 fontSize="11px"
                 fontWeight="800"
                 color="gray.900"
+                id={id}
             >
                 {children}
             </Text>
