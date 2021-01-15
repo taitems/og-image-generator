@@ -1,6 +1,6 @@
 ## OG Image Creator for GitHub
 
-Create beautiful open-graph images for your GitHub repository.
+Create beautiful open-graph images for your (public) GitHub repository.
 
 ## Development
 

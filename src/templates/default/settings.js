@@ -7,7 +7,7 @@ const layers = [{
         id: 'background',
         type: 'color',
         label: 'Background',
-        value: '#0160FA'
+        value: '#3F00F1'
     }],
     children: [{
         type: 'text',
@@ -86,7 +86,26 @@ const layers = [{
         }]
     }]
 }]
-const palette = ['#030047', '#FF3E6C', '#FFC2D6', '#FFCC3E', '#5F5FFF'];
+const palette = [
+    '#02002E',
+    '#030047',
+    '#5D5C89',
+    '#FF3E6C',
+    '#FFA0B7',
+    '#FFC2D6',
+    '#FFF4F7',
+    '#FFCC3E',
+    '#FFE6A0',
+    '#FFF2CF',
+    '#FFFAEE',
+    '#3F00F1',
+    '#5F5FFF',
+    '#B1B1FF',
+    '#D7D7FF',
+    '#F1F1FF',
+    '#FFFFFF'
+];
+
 
 module.exports = {
     layers,
