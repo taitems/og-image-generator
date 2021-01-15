@@ -2,6 +2,9 @@
 
 Create beautiful open-graph images for your (public) GitHub repository.
 
+![image](https://user-images.githubusercontent.com/234593/104683998-2a13be00-574c-11eb-9ced-fc53ccd20812.png)
+
+
 ## Development
 
 In the project directory, you can run:
